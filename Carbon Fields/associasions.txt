@@ -1,0 +1,47 @@
+  <?php
+          // echo do_shortcode('[products limit="4" columns="2" visibility="featured" ]');
+
+          $related = carbon_get_post_meta(get_the_ID(), 'smi_main');
+          $post_ids = array_column($related, 'id'); // можете сделать print_r( $related) сначала    
+         
+          $my_posts = get_posts(array(
+            'numberposts' => -1,
+            // 'orderby'     => 'date',
+            // 'order'       => 'DESC',             
+            'post_type'   => 'post',
+
+            'include' => $post_ids
+          ));
+
+          global $post;
+
+          foreach ($my_posts as $post) {
+            setup_postdata($post);
+          ?>
+
+
+ <div class="swiper-slide smi-slide">
+              <a class="smi-slide__top" href="#">
+                <img src="<?= get_template_directory_uri() . '/assets/images/clients/image-1.png' ?>" alt="image">
+              </a>
+              <div class="smi-slide__content">
+                <a class="smi-slide__title" href="#">
+                  <?php the_title(); ?>
+                </a>
+                <div class="slide-date d-flex justify-content-between align-items-center">
+                  <span class="slide-date__day">сегодня, 12:30</span>
+                  <div class="slide-date__views">
+                    2355
+                  </div>
+                </div>
+              </div>
+            </div><!-- /clients-slide -->
+
+
+
+
+  <?php
+            // формат вывода the_title() ...
+          }
+          wp_reset_postdata(); // сброс
+          ?>

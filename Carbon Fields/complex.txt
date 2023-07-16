@@ -1,0 +1,12 @@
+ 	Field::make('complex', 'sites_repeat', 'Характеристики')
+			->add_fields(array(
+				Field::make('text', 'sites_repeat_name', 'Заголовок')
+					->set_width(50),
+			)),
+
+
+
+ <?php $items = carbon_get_the_post_meta('why_repeat'); ?>
+      <?php foreach ($items as $item) : ?>
+        <li><?php echo $item['why_item']; ?></li>
+      <?php endforeach; ?>

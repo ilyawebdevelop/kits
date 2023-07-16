@@ -1,0 +1,51 @@
+  function popupArgs(src, type) {
+    var args = {
+      type: 'inline',
+      removalDelay: 500,
+      mainClass: 'mfp-zoom-in',
+      tClose: 'Закрыть',
+      tLoading: 'Загрузка...',
+      closeMarkup: '<button title="%title%" class="close-btn ic ic-close" data-popup-close></button>',
+      image: {
+        tError: '<a href="%url%">Изображение</a> не может быть загружено.'
+      },
+      callbacks: {
+        beforeOpen: function() {
+          this.container[0].classList.add('mfp-with-anim');
+        },
+        open: function() {
+          $('.nav__wrapper._fixed').css('margin-right', scrollWidth);
+        },
+        close: function() {
+          $('.nav__wrapper._fixed').css('margin-right', '');
+        }
+      },
+    };
+
+    if (type == 'iframe' || type == 'image') args['type'] = type;
+
+    if (type == 'gallery') {
+
+      args['type'] = 'image';
+      args['gallery'] = {
+        tPrev: 'Назад (или нажмите влево)',
+        tNext: 'Далее (или нажмите вправо)',
+        tCounter: '%curr% из %total%',
+        enabled: true
+      };
+
+    } else {
+
+      args['items'] = {
+        src: src
+      };
+
+    }
+
+    return args;
+  }
+
+
+  $('.popup-gallery').each(function() {
+    $(this).find('a').not('[data-popup]').magnificPopup(popupArgs(false, 'gallery'));
+  });

@@ -1,0 +1,7 @@
+var wpcf7Elm = document.querySelectorAll('.wpcf7');
+
+wpcf7Elm.forEach(el => {
+    el.addEventListener('wpcf7mailsent', () => {
+        location.href = 'https://akmaikzn.ru/spasibo';
+    });
+});

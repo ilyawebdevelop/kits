@@ -1,0 +1,40 @@
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  z-index: 4;
+  display: none;
+  box-shadow: 0 20px 100px rgba(0, 15, 44, 0.2);
+}
+.popup.showmodal {
+  animation: animPopup 400ms;
+  animation-fill-mode: forwards;
+}
+.popup.hidemodal {
+  animation: animPopup 200ms;
+  animation-fill-mode: forwards;
+  animation-direction: reverse;
+}
+.popup .close {
+  position: absolute;
+  z-index: 2;
+  width: 30px;
+  height: 30px;
+  top: 60px;
+  right: 60px;
+  background-size: contain;
+  background-image: url(../img/closepopup.svg);
+}
+@keyframes animPopup {
+  0% {
+    opacity: 0;
+    transform: translate(15px, 5px) scale(0.88);
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
