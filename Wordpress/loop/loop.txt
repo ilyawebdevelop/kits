@@ -1,0 +1,36 @@
+      <?php
+      // параметры по умолчанию
+      $my_posts = get_posts(array(
+        'numberposts' => -1,
+        'category'    => 1,
+        // 'orderby'     => 'date',
+        // 'order'       => 'DESC',             
+        'post_type'   => 'post',
+        'suppress_filters' => true, // подавление работы фильтров изменения SQL запроса
+      ));
+
+      global $post;
+
+      foreach ($my_posts as $post) {
+        setup_postdata($post);
+      ?>
+
+ <div class="stocks-card">
+            <div class="stocks-card__image">
+              <img src="<?php echo get_the_post_thumbnail_url(); ?>" alt="image">
+              <a href="<?php the_permalink(); ?>"></a>
+            </div>
+            <div class="stocks-card__date">
+              <?php echo carbon_get_the_post_meta('news_date'); ?>
+            </div>
+            <div class="stocks-card__descr">
+              <?php the_title(); ?>
+            </div>
+          </div><!-- /stocks-card -->
+
+
+  <?php
+        // формат вывода the_title() ...
+      }
+      wp_reset_postdata(); // сброс
+      ?>
