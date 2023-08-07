@@ -1,0 +1,287 @@
+// Conditional Show hide checkout fields based on chosen shipping methods
+add_action('wp_footer', 'custom_checkout_field_script');
+function custom_checkout_field_script()
+{
+
+   // HERE your shipping methods rate IDs
+   $local_pickup = 'local_pickup:2';
+   $pickpoint = 'wc_custom_shipping_pickpoint';
+
+   $required_text = esc_attr__('required', 'woocommerce');
+   $required_html = '<abbr class="required" title="' . $required_text . '">*</abbr>';
+?>
+   <script>
+      jQuery(function($) {
+         var ism = 'input[name^="shipping_method"]',
+            ismc = ism + ':checked',
+            csa = 'input#ship-to-different-address-checkbox',
+            rq = '-required',
+            vr = 'validate' + rq,
+            w = 'woocommerce',
+            wv = w + '-validated',
+            iv = '-invalid',
+            fi = '-field',
+            wir = w + iv + ' ' + w + iv + rq + fi,
+            b = '#billing_',
+            s = '#shipping_',
+            f = '_field',
+            a1 = 'country',
+            a2 = 'address_1',
+            a3 = 'address_2',
+            a4 = 'postcode',
+            a5 = 'state',
+            a6 = 'city',
+            b1 = b + a1 + f,
+            b2 = b + a2 + f,
+            b3 = b + a3 + f,
+            b4 = b + a4 + f,
+            b5 = b + a5 + f,
+            s1 = s + a1 + f,
+            s2 = s + a2 + f,
+            s3 = s + a3 + f,
+            s4 = s + a4 + f,
+            s5 = s + a5 + f,
+            s6 = s + a6 + f,
+            formContentShipping = '.cart__form_shipping',
+            formTitleShipping = '.cart__title_shipping',
+            pickPoint = '<?php echo $pickpoint; ?>',
+            localPickup = '<?php echo $local_pickup; ?>';
+
+         // Utility function to shows or hide checkout fields
+         function showHide(action = 'show', selector = '') {
+            if (action == 'show')
+               $(selector).show(function() {
+                  $(this).addClass(vr);
+                  $(this).removeClass(wv);
+                  $(this).removeClass(wir);
+                  if ($(selector + ' > label > abbr').html() == undefined)
+                     $(selector + ' label').append('<?php echo $required_html; ?>');
+               });
+            else
+               $(selector).hide(function() {
+                  $(this).removeClass(vr);
+                  $(this).removeClass(wv);
+                  $(this).removeClass(wir);
+                  if ($(selector + ' > label > abbr').html() != undefined)
+                     $(selector + ' label > .required').remove();
+               });
+         }
+
+         // Initializing at start after checkout init (Based on the chosen shipping method)
+         // Сразу при загрузке страницы
+         setTimeout(function() {
+
+            if ($(ismc).val() == localPickup) // Chosen "Pick point" (Hiding "Delivery")
+            {
+               console.log('Выбран самовывоз сразу');
+               showHide('hide', s1);
+               showHide('hide', s2);
+               $(s2).find('input').val('-');
+               $(s4).find('input').val('-0');
+               $(s6).find('input').val('-');              
+               showHide('hide', s4);
+               showHide('hide', s6);
+               showHide('show', b1);
+               showHide('show', b2);
+               showHide('show', b3);
+               showHide('hide', b4);
+               showHide('hide', b5);
+               showHide('hide', formContentShipping);
+               showHide('hide', formTitleShipping);
+            } else if ($(ismc).val() == pickPoint) // Choosen "Local pickup" (Hidding "Take away")
+            {
+
+               //   showHide('show',b1 ); // Country
+               //   showHide('hide',b2 ); // Address 1
+               //   showHide('hide',b3 ); // Address 2
+               //   showHide('hide',b4 ); // Postcode
+               //   showHide('hide',b5 ); // State
+            } else {
+               showHide('show', b1);
+               showHide('show', b2);
+               showHide('show', b3);
+               showHide('show', b4);
+               showHide('show', b5);
+               showHide('hide', b4);
+            }
+         }, 1500);
+
+         // When shipping method is changed (Live event)
+         $('form.checkout').on('change', ism, function() {
+            if ($(ismc).val() == pickPoint) {
+               //   showHide('show',b1);
+               //   showHide('hide',b2);
+               //   showHide('hide',b3);
+               //   showHide('hide',b4);
+               //   showHide('hide',b5);
+
+               if ($(csa).prop('checked')) {
+                  // showHide('show',s1);
+                  // showHide('hide',s2);
+                  // showHide('hide',s3);
+                  // showHide('hide',s4);
+                  // showHide('hide',s5);
+               }
+            } else if ($(ismc).val() == localPickup) {
+               showHide('hide', s1);
+               showHide('hide', s2);
+               $(s2).find('input').val('-');
+               $(s4).find('input').val('-0');
+               $(s6).find('input').val('-');              
+               showHide('hide', s4);
+               showHide('hide', s6);
+               showHide('show', b1);
+               showHide('show', b2);
+               showHide('show', b3);
+               showHide('hide', b4);
+               showHide('hide', b5);
+               showHide('hide', formContentShipping);
+               showHide('hide', formTitleShipping);
+
+               if ($(csa).prop('checked')) {
+                  // showHide('hide',s1);
+                  // showHide('hide',s2);
+                  // showHide('show',s3);
+                  // showHide('hide',s4);
+                  // showHide('hide',s5);
+                  // showHide('hide',s6);
+               }
+            } else {
+               showHide('show', s1);
+               showHide('show', s2);
+               $(s2).find('input').val('');
+               $(s4).find('input').val('');
+               $(s6).find('input').val('');
+               showHide('show', s4);
+               showHide('show', s6);             
+               showHide('show', b4);
+               showHide('show', b5);
+               showHide('show', formContentShipping);
+               showHide('show', formTitleShipping);
+               showHide('hide', b4);
+
+               if ($(csa).prop('checked')) {
+                  // showHide('show',s1);
+                  // showHide('show',s2);
+                  // showHide('show',s3);
+                  // showHide('show',s4);
+                  // showHide('show',s5);
+                  // showHide('show',s6);
+               }
+            }
+         });
+
+         // When "shipping to different address" is changed (Live event)
+         // $(csa).click( function() {
+         //     if( $(ismc).val() == pickPoint && $(this).prop('checked') )
+         //     {
+         //         showHide('show',b1);
+         //         showHide('hide',b2);
+         //         showHide('hide',b3);
+         //         showHide('hide',b4);
+         //         showHide('hide',b4);
+
+         //         showHide('show',s1);
+         //         showHide('hide',s2);
+         //         showHide('hide',s3);
+         //         showHide('hide',s4);
+         //         showHide('hide',s5);
+         //     }
+         //     else if( $(ismc).val() == localPickup && $(this).prop('checked') )
+         //     {
+         //         showHide('hide',b1);
+         //         showHide('show',b2);
+         //         showHide('show',b3);
+         //         showHide('hide',b4);
+         //         showHide('hide',b4);
+
+         //         showHide('hide',s1);
+         //         showHide('show',s2);
+         //         showHide('show',s3);
+         //         showHide('hide',s4);
+         //         showHide('hide',s5);
+         //     }
+         //     else
+         //     {
+         //         showHide('show',b1);
+         //         showHide('show',b2);
+         //         showHide('show',b3);
+         //         showHide('show',b4);
+         //         showHide('show',b4);
+
+         //         showHide('show',s1);
+         //         showHide('show',s2);
+         //         showHide('show',s3);
+         //         showHide('show',s4);
+         //         showHide('show',s5);
+         //     }
+         // });
+      });
+   </script>
+<?php
+}
+
+// Checkout conditional fields validation
+add_action('woocommerce_checkout_process', 'wps_select_checkout_field_process');
+function wps_select_checkout_field_process()
+{
+   // HERE your shipping methods rate IDs
+   $local_pickup = 'local_pickup:2';
+   //  $pickpoint    = 'wc_custom_shipping_pickpoint';
+
+
+   $chosen_shipping_method = WC()->session->get('chosen_shipping_methods')[0];
+   $billing                = '<strong> ' . __('Billing', 'woocommerce') . ' ';
+   $shipping               = '<strong> ' . __('Shipping', 'woocommerce') . ' ';
+   $country                = __('country.', 'woocommerce');
+   $address1               = __('address.', 'woocommerce');
+   $postcode               = __('postcode.', 'woocommerce');
+   $state                  = __('state.', 'woocommerce');
+   $end_text               = '</strong> ' . __('is a required field.', 'woocommerce');
+
+   if ($chosen_shipping_method == $local_pickup) {
+      if (empty($_POST['billing_address_1']))
+         // wc_add_notice( $billing . $address1 . $end_text, 'error' );
+
+         if ($_POST['ship_to_different_address']) {
+            // if( empty($_POST['shipping_address_1']) )
+            //     wc_add_notice( $shipping . $address1 . $end_text, 'error' );
+         }
+   }
+   //  elseif( $chosen_shipping_method == $pickpoint ) {
+   //      if( empty($_POST['billing_country']) )
+   //          wc_add_notice( $billing . $country . $end_text, 'error' );
+
+   //      if( $_POST['ship_to_different_address'] ){
+   //          if( empty($_POST['shipping_country']) )
+   //              wc_add_notice( $shipping . $country . $end_text, 'error' );
+   //      }
+   //  }
+   else {
+      if (empty($_POST['billing_country']))
+         wc_add_notice($billing . $country . $end_text, 'error');
+
+      if (empty($_POST['billing_address_1']))
+         wc_add_notice($billing . $address1 . $end_text, 'error');
+
+      // if (empty($_POST['billing_postcode']))
+      //    wc_add_notice($billing . $postcode . $end_text, 'error');
+
+      // if (empty($_POST['billing_state']))
+      //    wc_add_notice($billing . $state . $end_text, 'error');
+
+      if ($_POST['ship_to_different_address']) {
+         if (empty($_POST['shipping_country']))
+            wc_add_notice($shipping . $country . $end_text, 'error');
+
+         // if (empty($_POST['shipping_address_1']))
+         //    wc_add_notice($shipping . $address1 . $end_text, 'error');
+
+         // if (empty($_POST['shipping_postcode']))
+         //    wc_add_notice($shipping . $postcode . $end_text, 'error');
+
+         // if (empty($_POST['shipping_state']))
+         //    wc_add_notice($shipping . $state . $end_text, 'error');
+      }
+   }
+}
