@@ -15,6 +15,7 @@ function ecity_scripts()
 	wp_enqueue_script('ecity-jquery', get_template_directory_uri() . '/assets/js/jquery-3.6.1.min.js', array(), _S_VERSION, true);
 	wp_enqueue_script('ecity-bootstrap-js', get_template_directory_uri() . '/assets/js/bootstrap.bundle.min.js', array(), _S_VERSION, true);
 	wp_enqueue_script('ecity-swiper-js', get_template_directory_uri() . '/assets/js/swiper-bundle.min.js', array(), _S_VERSION, true);
+	wp_enqueue_script('ecity-app-js', get_template_directory_uri() . '/assets/js/app.min.js', array(), _S_VERSION, true);	
 	wp_enqueue_script('ecity-main-js', get_template_directory_uri() . '/assets/js/script.js', array(), _S_VERSION, true);
 
 	if (is_product()) {

@@ -144,3 +144,11 @@ Container::make('post_meta', 'Новости')
     Field::make('text', 'news_date', 'Дата')
       ->set_width(50),
   ));
+
+  // Field::make('association', 'related_posts', 'Рекомендуемые работы')
+  // ->set_types(array(
+  //   array(
+  //     'type'      => 'post',
+  //     'post_type' => 'work',
+  //   )
+  // ))

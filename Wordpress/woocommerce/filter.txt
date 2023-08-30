@@ -1,0 +1,24 @@
+// событие после результата AJAX фильтрации
+after_change_and_load_items_with_filter_function = function(use_default, $this) {
+  // действие
+}
+if (typeof (berocket_add_filter) == 'function') {
+  berocket_add_filter('ajax_load_from_url_done_after', after_change_and_load_items_with_filter_function);
+} else {
+  jQuery(document).on('berocket_hooks_ready', function() {
+    berocket_add_filter('ajax_load_from_url_done_after', after_change_and_load_items_with_filter_function);
+  });
+}
+
+
+// событие перед отправкой AJAX
+before_change_and_load_items_with_filter_function = function (use_default, $this) {
+  // действие
+}
+if (typeof (berocket_add_filter) == 'function') {
+  berocket_add_filter('ajax_load_from_url_beforeSend', before_change_and_load_items_with_filter_function);
+} else {
+  jQuery(document).on('berocket_hooks_ready', function () {
+    berocket_add_filter('ajax_load_from_url_beforeSend', before_change_and_load_items_with_filter_function);
+  });
+}

@@ -1,0 +1,24 @@
+<div class="swiper product-slider">
+  <div class="swiper-wrapper">
+
+    <?php $items = carbon_get_the_post_meta('crb_media_gallery'); ?>
+    <?php foreach ($items as $item) : ?>
+      <div class="swiper-slide product-slide h-[250px] sm:h-[300px] lg:h-[400px] xl:h-[520px] rounded-[2px] bg-cover bg-center bg-no-repeat" style="background-image: url('<?php echo wp_get_attachment_url($item); ?>');">
+
+      </div>
+    <?php endforeach; ?>
+  </div>
+  <div class="nav-arrow nav-arrow-left"></div>
+  <div class="nav-arrow nav-arrow-right"></div>
+</div>
+<div class="swiper product-thumb-slider mt-[7px]">
+  <div class="swiper-wrapper grid grid-cols-7 gap-x-[2px] gap-y-[7px]">
+    <?php $items = carbon_get_the_post_meta('crb_media_gallery'); ?>
+    <?php foreach ($items as $item) : ?>
+      <div thumbsslider="" class="swiper-slide catalog-thumb-slide h-[50px] sm:h-[63px] rounded-[2px] bg-cover bg-center bg-no-repeat" style="background-image: url('<?php echo wp_get_attachment_url($item); ?>');">
+
+      </div>
+    <?php endforeach; ?>
+  </div>
+</div>
+

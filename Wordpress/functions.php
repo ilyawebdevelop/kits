@@ -89,7 +89,6 @@ if (defined('JETPACK__VERSION')) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
-e3r4wsar3
 
 /**
  * Load WooCommerce compatibility file.
@@ -107,13 +106,7 @@ if (class_exists('WooCommerce')) {
 }
 
 
-add_action( 'wp_ajax_to_basket', 'to_basket' );
-add_action ('wp_ajax_nopriv__to_basket', '_to_basket');
 
-function to_basket() {
-	echo 'Привет пользователь';
-	wp_die();
-}
 
 
 

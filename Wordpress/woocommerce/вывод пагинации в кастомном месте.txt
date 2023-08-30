@@ -1,0 +1,31 @@
+
+the_posts_pagination() работает только с главным циклом WordPress. На странице категорий у вас, скорее всего, свой цикл ( WP_Query() или get_posts() ). Это и является источником проблемы. Обойти эту проблему можно только таким хаком (выдержка из рабочего кода):
+
+global $post, $wp_query;
+
+$query_args = array(
+    'post_status' => 'publish',
+    'paged' =>  get_query_var( 'page' ),
+    // и прочее...
+);
+
+$query = new WP_Query( $query_args );
+
+if ( $query->have_posts() ) {
+    while ( $query->have_posts() ) {
+        $query->the_post();
+        // вывод поста
+    }
+
+    wp_reset_postdata();
+
+    $temp_query = $wp_query;
+    $wp_query   = null;
+    $wp_query   = $query;
+
+    the_posts_pagination();
+
+    // Reset main query object.
+    $wp_query = null;
+    $wp_query = $temp_query;
+}
