@@ -1,0 +1,6 @@
+	<form class="modal-content quiz-form" id="quiz-form" action="mail.php" method="POST" enctype="multipart/form-data">
+
+			
+
+			
+		</form>

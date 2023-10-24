@@ -1,0 +1,14 @@
+  // loadmore posts
+  let tabsPanelAll = document.querySelectorAll('.tabs__panel');
+  tabsPanelAll.forEach(el => {
+    let catalogCard = el.querySelectorAll('.catalog-card');
+    let catalogBtn = el.querySelector('.catalog-sect__btn');
+    $(catalogCard).slice(0, 2).show();
+    catalogBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      $(el).find(".catalog-card:hidden").slice(0, 2).slideDown();
+      if ($(el).find(".catalog-card:hidden").length == 0) {
+        $(catalogBtn).text("Нет продуктов").addClass("noContent");
+      }
+    });
+  });

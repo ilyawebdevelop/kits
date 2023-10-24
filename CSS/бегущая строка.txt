@@ -1,0 +1,43 @@
+<section class="run">
+ 
+    <div class="run-content">
+    Подписывайтесь на наш Telegram-канал 
+    <a href="https://t.me/mc_neokzn" target="_blank" data-wpel-link="external" rel="nofollow external noopener noreferrer"> @mc_neokzn</a>
+    </div>
+ 
+</section>
+
+
+.run {
+  background-color: #00CCFF;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  color: #fff;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+
+}
+
+@media(max-width: 767px) {
+  .run {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+}
+
+.run-content {
+  display: flex;
+  display: inline-flex;
+  column-gap: 10px;
+  animation: scroll 10s linear infinite;
+  white-space: nowrap;
+  padding-left: 100%;
+  font-size: 24px;
+}
+
+@media(max-width: 767px) {
+  .run-content {
+    font-size: 20px;
+  }
+}

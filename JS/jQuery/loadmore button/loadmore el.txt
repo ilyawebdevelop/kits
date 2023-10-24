@@ -1,0 +1,8 @@
+  $(".catalog-card").slice(0, 3).show();
+  $(".catalog-sect__btn").on("click", function (e) {
+    e.preventDefault();
+    $(".catalog-card:hidden").slice(0, 4).slideDown();
+    if ($(".catalog-card:hidden").length == 0) {
+      $("catalog-sect__btn").text("No Content").addClass("noContent");
+    }
+  });

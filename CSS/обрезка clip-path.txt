@@ -1,0 +1,10 @@
+https://www.8host.com/blog/obrezka-izobrazhenij-v-css-s-pomoshhyu-clip-path/
+
+.circle {
+  -webkit-clip-path: circle(50%);
+  clip-path: circle(50%);
+}
+.circle2 {
+  -webkit-clip-path: circle(70% at 70% 20%);
+  clip-path: circle(70% at 70% 20%);
+}

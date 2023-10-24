@@ -1,0 +1,33 @@
+// search value
+if (document.querySelector('#elastic')) {
+  document.querySelector('#elastic').oninput = function () {
+
+    let val = this.value.trim();
+    let elasticItems = document.querySelectorAll('.library .test-article');
+    if (val != '') {
+   
+      elasticItems.forEach(function (elem) {
+        if (elem.dataset.value.search(RegExp(val, "gi")) == -1) {
+          elem.classList.add('hide');
+          document.querySelectorAll('.loadmore').forEach(el => {
+            el.style.display = 'none';
+          });
+        }
+        else {
+          elem.classList.remove('hide');
+          document.querySelectorAll('.loadmore').forEach(el => {
+            el.style.display = 'block';
+          });
+        }
+      });
+    }
+    else {
+      elasticItems.forEach(function (elem) {
+        elem.classList.remove('hide');     
+        document.querySelectorAll('.loadmore').forEach(el => {
+          el.style.display = 'flex';
+        });
+      });
+    }
+  }
+}
