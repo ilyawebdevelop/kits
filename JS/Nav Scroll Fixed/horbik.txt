@@ -1,0 +1,27 @@
+  function fixHeader() {
+    if ($(document).scrollTop() > $('.header').offset().top + $('.header').outerHeight()) {
+      $('.header__fxd').addClass('_fixed');
+      setTimeout(function () {
+        $('.header__fxd').addClass('_show');
+      }, 50);
+    } else {
+      $('.header__fxd').removeClass('_fixed _show');
+    }
+  }
+  $(window).on('load scroll', function () {
+    if ($('.header__fxd').length > 0) fixHeader();
+  });
+  $(window).on('load resize', function () {
+    if (mediaQuery991.matches) {
+      $('.footer__col.contacts-info').append($('.footer__col .info-box'));
+    } else {
+      $('.footer__col.info').append($('.footer__col .info-box'));
+    }
+
+    // высота моб меню
+    if (mediaQuery991.matches) {
+      $('.header__nav-menu').outerHeight(window.outerHeight - $('.header__top-inner').outerHeight());
+    } else {
+      $('.header__nav-menu').removeAttr('style');
+    }
+  });

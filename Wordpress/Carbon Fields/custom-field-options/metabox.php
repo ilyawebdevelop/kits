@@ -57,7 +57,7 @@ Container::make('post_meta', 'Главная страница')
         Field::make('image', 'main-slider_image', 'Изображение')
           ->set_width(50)
           ->set_value_type('url'),
-		Field::make('text', 'main-slider_link', 'Ссылка')
+        Field::make('text', 'main-slider_link', 'Ссылка')
           ->set_width(33),
       )),
   ))
@@ -143,6 +143,16 @@ Container::make('post_meta', 'Новости')
       ->set_value_type('url'),
     Field::make('text', 'news_date', 'Дата')
       ->set_width(50),
+    Field::make('media_gallery', 'crb_media_gallery')
+      ->set_type(array('image', 'video'))
+  ));
+
+Container::make('term_meta', __('Term Options', 'crb'))
+  ->where('term_taxonomy', '=', 'product_cat') // only show our new field for categories
+  ->add_fields(array(
+    Field::make('image', 'cat_img', 'Изображение')
+      ->set_width(33)
+      ->set_value_type('url'),
   ));
 
   // Field::make('association', 'related_posts', 'Рекомендуемые работы')

@@ -1,0 +1,16 @@
+https://denis-creative.com/page-scroll-2-id/
+
+<ul>
+            <li><a href="/#desc" data-scroll="" class="__mPS2id _mPS2id-h active active-first">Техника</a></li>
+            <li><a href="/#performance" data-scroll="" class="__mPS2id _mPS2id-h mPS2id-clicked">Производительность</a></li>
+            <li><a href="/#rent" data-scroll="" class="__mPS2id _mPS2id-h">Аренда</a></li>
+            <li><a href="/#conditions" data-scroll="" class="__mPS2id _mPS2id-h">Доставка и оплата</a></li>
+            <li><a href="/#reviews" data-scroll="" class="__mPS2id _mPS2id-h">Отзывы</a></li>
+          </ul>
+
+ // скролл к элементам
+  $('[data-scroll]').mPageScroll2id({
+    scrollSpeed: 750,
+    offset: 54,
+    highlightClass: "active"
+  });

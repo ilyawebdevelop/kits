@@ -1,0 +1,36 @@
+      <div class="swiper-slide reviewsSlide" data-toggle="modal" data-target="#modal-video">
+            <div class="reviewsSlideImg">
+              <img src="<?php echo $item['reviews_item_img']; ?>" alt="image">
+            </div>
+            <button class="reviewsSlideBtn"><img src="<?= get_template_directory_uri() . '/assets/img/icons/play.svg' ?>" alt="icon"></button>
+          </div><!-- /reviewsSlide -->
+
+<!-- video -->
+	<div class="modal fade modal-video" id="modal-video" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+
+			<div class="modalContent modal-content">
+
+				<video controls poster="#">
+					<source src="#" type="video/mp4">
+				</video>
+				<button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+					<img src="<?= get_template_directory_uri() . '/assets/img/icons/close-icon.svg' ?>" alt="close">
+				</button>
+
+			</div>
+		</div>
+	</div>
+
+let videoBtnAll = document.querySelectorAll('.reviewsSlideBtn');
+let modalVideoSrc = document.querySelector('.modal-video source');
+let modalVideoPoster = document.querySelector('.modal-video video');
+
+videoBtnAll.forEach(el => {
+  el.addEventListener('click', () => {
+    modalVideoSrc.src = el.dataset.video;
+    modalVideoPoster.poster = el.dataset.poster;
+    modalVideoPoster.load();
+  });
+});
+

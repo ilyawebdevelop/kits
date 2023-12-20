@@ -1,0 +1,62 @@
+ <form class="home-rent__form form js-form">
+          <div class="form__fields">
+            <div class="form__field">
+              <input class="form__input" type="text" name="Имя" id="rent-form__form-name" required="">
+              <label class="form__label" for="rent-form__form-name">Ваше имя</label>
+            </div>
+            <div class="form__field">
+              <input class="form__input" type="tel" name="Телефон" id="rent-form__form-phone" required="">
+              <label class="form__label" for="rent-form__form-phone">Ваш номер телефона</label>
+            </div>
+          </div>
+          <div class="form__submit-box">
+            <button class="form__btn global-btn" type="submit">
+              <img src="img/svg/btn-arrow.svg" alt="">
+              <span>Арендовать</span>
+            </button>
+            <div class="form__agreement-box agreement">
+              <label class="agreement__label">Нажимая на кнопку, вы даете согласие на <a href="/privacy.html" target="_blank" style="color: #FF4327;">обработку своих персональных данных</a>
+                <span>
+                  <span>
+                    <span>
+                      <input type="checkbox" hidden="">
+                    </span>
+                  </span>
+                </span>
+                <div class="agreement__rect"></div>
+              </label>
+            </div>
+          </div>
+        </form>
+
+// отправка формы
+  $('.js-form').submit(function () {
+    var form = $(this);
+    var formData = new FormData(form[0]);
+    var checkbox = form.find('.agreement__label .agreement__rect');
+    var checkboxReal = form.find('.agreement__label input[type=checkbox]');
+    if (checkboxReal.length) {
+      if (!checkboxReal.is(':checked')) {
+        checkbox.effect("shake", {
+          'distance': 5
+        });
+        // alert('Необходимо дать согласие на обработку персональных данных');
+        return false;
+      }
+    }
+    $.ajax({
+      url: 'mail.php',
+      type: 'POST',
+      data: formData,
+      async: false,
+      cache: false,
+      contentType: false,
+      processData: false,
+      success: function (data) {
+        $.magnificPopup.open(popupArgs('#tx-popup'));
+        form.trigger('reset');
+        form.find('.form__agreement-box').removeClass('checkbox-active');
+      }
+    });
+    return false;
+  });

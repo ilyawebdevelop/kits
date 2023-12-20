@@ -1,0 +1,57 @@
+			<div class="header-subcat">
+
+
+									<?php
+									$categories = get_categories([
+										'taxonomy'     => 'product_cat',
+										'type'         => 'post',
+										// 'child_of'     => 0,
+
+										'orderby'      => 'name',
+										'order'        => 'ASC',
+										'hide_empty'   => false,
+										// 'hierarchical' => 1,
+										'exclude'      => 16,
+										'include'      => '',
+										// 'number'       => 0,
+										'pad_counts'   => false,
+										// полный список параметров смотрите в описании функции http://wp-kama.ru/function/get_terms
+									]);
+									$submenu_count = 0;
+									foreach ($categories as $category) {
+										$link = get_category_link($category->term_id);
+									?>
+
+										<?php
+										if ($category->parent == 0) : ?>
+											<?php $submenu_count++; ?>
+
+											<div class="header-subcat__block" data-cat="<?php echo $submenu_count; ?>">
+
+												<div class="header-subcat__item">
+													<a class="header-subcat__title" href="<?php echo $link; ?>"><?php echo $category->name; ?></a>
+													<ul class="header-subcat__list">
+
+														<?php foreach ($categories as $subcategory) :
+															if ($subcategory->parent == $category->term_id) :
+																$term_link = get_term_link($subcategory->term_id, 'product_cat');
+																 ?>
+																<li><a href="<?php echo $term_link; ?>"><?php echo esc_html($subcategory->name) ?></a></li>
+															<?php endif; ?>
+														<?php endforeach; ?>
+
+													</ul>
+												</div>
+
+											</div><!-- /header-subcat__block -->
+										<?php
+
+										endif;
+										?>
+									<?php
+									}
+									?>
+
+
+
+								</div>

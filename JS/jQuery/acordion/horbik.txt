@@ -1,0 +1,35 @@
+ // Аккордеон, футер
+<div class="footer__col main-menu">
+          <h4 class="col-title accordion-active">Меню</h4>
+          <div class="menu-wrapper" style="display: block;">
+            <ul>
+              <li><a href="/#desc" data-scroll="" class="__mPS2id _mPS2id-h">Техника</a></li>
+              <li><a href="/#performance" data-scroll="" class="__mPS2id _mPS2id-h">Производительность</a></li>
+              <li><a href="/#rent" data-scroll="" class="__mPS2id _mPS2id-h">Аренда</a></li>
+              <li><a href="/#conditions" data-scroll="" class="__mPS2id _mPS2id-h">Доставка и оплата</a></li>
+              <li><a href="/#reviews" data-scroll="" class="__mPS2id _mPS2id-h active active-last">Отзывы</a></li>
+              <li><a href="/karta-partnera.doc">Карта партнёра</a></li>
+            </ul>
+          </div>
+        </div>
+
+
+
+  $(function () {
+    $(".footer__col.main-menu .col-title").on("click", function (e) {
+      if (mediaQuery991.matches) {
+        e.preventDefault();
+        var $this = $(this);
+        // только один активен
+        if (!$this.hasClass("accordion-active")) {
+          $(".footer__col.main-menu menu-wrapper").slideUp(400);
+          $(".footer__col.main-menu .col-title").removeClass("accordion-active");
+          // $('.accordion__arrow').removeClass('accordion__rotate');
+        }
+
+        $this.toggleClass("accordion-active");
+        $this.next().slideToggle();
+        // $('.accordion__arrow',this).toggleClass('accordion__rotate');
+      }
+    });
+  });

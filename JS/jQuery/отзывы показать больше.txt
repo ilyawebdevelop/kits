@@ -1,0 +1,34 @@
+<div class="swiper-slide swiper-slide-active">
+            <div class="swiper-slide__top">
+              <p class="swiper-slide__title">Сергей</p>
+              <div class="swiper-slide__rating">
+                <img src="img/svg/star-icon.svg" alt="">
+                <img src="img/svg/star-icon.svg" alt="">
+                <img src="img/svg/star-icon.svg" alt="">
+                <img src="img/svg/star-icon.svg" alt="">
+                <img src="img/svg/star-icon.svg" alt="">
+              </div>
+            </div>
+            <p class="swiper-slide__text">Коллективу Интегрин!! Огромное, человеческое спасибо за консультации во всех вопросах и предоставление спецтехники в любой момент. Спустя 6 месяцев сотрудничества хотелось бы сказать БОЛЬШОЕ спасибо за всю проделанную работу!</p>
+            <button class="swiper-slide__btn-read-more" href="#">Читать полностью</button>
+            <div class="swiper-slide__bottom">
+              <span class="swiper-slide__date">02.03.2023</span>
+              <!--<p class="swiper-slide__author">Врач: <span>Виктория Сергеевна</span></p>-->
+            </div>
+           </div> 
+
+
+
+// отзывы, кнопка показать полностью
+  $(window).on('load', function (e) {
+    e.preventDefault();
+    $('.home-reviews .swiper-slide__btn-read-more').click(function () {
+      $(this).parent().find('.swiper-slide__text').css('max-height', '100%');
+      $(this).hide();
+      $('.home-reviews .swiper-slide__bottom').css('margin-top', 'auto');
+      reviewsMatchHeight();
+    });
+  });
+  function reviewsMatchHeight() {
+    $('.home-reviews .swiper-slide').matchHeight();
+  }

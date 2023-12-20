@@ -1,0 +1,2 @@
+https://github.com/jotform/before-after.js
+https://www.jqueryscript.net/other/before-after-image-viewer.html

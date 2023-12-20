@@ -1,0 +1,14 @@
+		<div class="eformat-advantages__inner eformat-advantages__inner_main sect-m">
+			<?php
+			$items = carbon_get_post_meta(28, 'eformat_advantages__list');
+			foreach ($items as $item) {
+			?>
+				<div class="eformat-advantages__item">
+					<img class="eformat-advantages__item-icon" src="<?= wp_get_attachment_image_url($item['icon'], 'full')  ?>" alt="">
+					<p class="eformat-advantages__item-desc"><?= $item['desc'] ?></p>
+				</div>
+				<div class="eformat-advantages__line"></div>
+			<?php
+			}
+			?>
+		</div>

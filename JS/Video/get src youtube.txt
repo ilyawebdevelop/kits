@@ -1,0 +1,20 @@
+function getIdYoutube(href) {
+  var id = href.split('v=')[1];
+  var ampersandPosition = id.indexOf('&');
+  if (ampersandPosition != -1) id = id.substring(0, ampersandPosition);
+  return id;
+}
+$('.afishaSlideImgW').not('[data-popup]').click(function () {
+  if ($(this).hasClass('_loaded')) return false;
+  $(this).append('<iframe src="https://www.youtube.com/embed/' + getIdYoutube($(this).attr('data-youtube')) + '?autoplay=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>').addClass('_loaded');
+});
+
+
+         <div class="swiper-slide afishaSlide">
+                <div class="afishaSlideDate">10.11</div>
+                <div class="afishaSlideImgW" data-youtube="https://www.youtube.com/watch?v=ZpgFOchoxCw&amp;t">
+                  <img src="@img/admin/afisha/image-1.jpg" alt="image" class="afishaSlideImg">
+                  <img src="@img/icons/play.svg" alt="play" class="afishaSlidePlay">
+                </div>
+                <div class="about__video video-box" data-youtube="https://www.youtube.com/watch?v=ZpgFOchoxCw&amp;t"></div>
+              </div><!-- /afishaSlide -->

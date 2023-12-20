@@ -1,0 +1,62 @@
+$('.beforeAfter').each(function () {
+    $(this).beforeAfter({
+
+            // is draggable/swipeable
+            movable: true,
+
+            // click image to move the slider
+            clickMove: true,
+
+            // always show the slider
+            alwaysShow: true,
+
+            // intial position of the slider
+            position: 50,
+
+            activeOpacity: 1,
+
+            // slider colors
+            separatorColor: '#ffffff',
+            bulletColor: '#ffffff',
+            arrowColor: '#333333',
+
+        }
+    );
+});
+
+
+
+
+.beforeAfter {
+    height: 520px;
+    @media(max-width: 767px){
+        height: auto;
+        max-height: 50vw;
+    }
+}
+.beforeAfter img {
+    max-width: unset;
+}
+.beforeAfter {
+    &>div {
+       &:nth-child(3) {
+        color: #fff;
+        &>div {
+            &>div {
+                background: url('@img/icons/arrow-slider.svg') no-repeat center center / contain;
+                width: 122px!important;
+                height: 57px!important;
+                border-radius: 0!important;
+                background-color: transparent!important;
+                @media(max-width: 767px){
+                    width: 96px!important;
+                    height: 45px!important;
+                }
+                i {
+                    display: none!important;
+                }
+            }
+        }
+       }
+    }
+}

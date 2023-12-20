@@ -1,0 +1,32 @@
+ <?php
+      $categories = get_categories([
+        'taxonomy'     => 'product_cat',
+        'type'         => 'post',
+        // 'child_of'     => 0,
+
+        'orderby'      => 'name',
+        'order'        => 'ASC',
+        'hide_empty'   => 0,
+        // 'hierarchical' => 1,
+        'exclude'      => 16,
+        'include'      => '',
+        // 'number'       => 0,
+        'pad_counts'   => false,
+        // полный список параметров смотрите в описании функции http://wp-kama.ru/function/get_terms
+      ]);
+      $count_cat = 0;
+
+      foreach ($categories as $category) {
+        $thumbnail_id = get_woocommerce_term_meta($category->term_id, 'thumbnail_id', true);
+        $image = carbon_get_term_meta($category->term_id, 'cat_img');
+        $link = get_category_link($category->term_id);
+        $count_cat++;
+      ?>
+        <a class="catItem" href="<?php echo $link; ?>">
+          <div class="catItemCount">0<?php echo $count_cat; ?></div>
+          <div class="catItemTitle"> <?php echo $category->name; ?></div>
+          <img src="<?php echo $image; ?>" alt="image" class="catItemImg">
+        </a>
+      <?php
+      }
+      ?>

@@ -1,16 +1,22 @@
-    <?php $about_items = carbon_get_the_post_meta('about_items'); ?>
-      <?php foreach ($about_items as $about_item) : ?>
-        <div class="about-list__item">
-          <h4 class="about-list__item-title anim-item anim-item-left"><?php echo $about_item['about_item_title'] ?></h4>
-          <ul class="list about-list__list">
-            <?php $about_inside = [];
-            foreach ($about_item['about_inside_repeat'] as $about_inside_item) {
-              $about_inside[] = $about_inside_item['about_inside_name'];
-            ?>
-              <li class="about-list__list-item anim-item anim-item-right"><span><?php echo $about_inside_item['about_inside_name'] ?></span> <?php echo $about_inside_item['about_inside_text'] ?></li>
-            <?php
-            } ?>
+  <?php $items = carbon_get_the_post_meta('coffee_block'); ?>
+    <?php foreach ($items as $item) : ?>
+      <div class="coffeeBlock">
+        <h3 class="coffeeBlockTitle"><?php echo $item['coffee_block_title']; ?></h3>
+        <?php
 
-          </ul>
-        </div>
-      <?php endforeach; ?>
+        ?>
+        <ul class="coffeeList">
+
+          <?php
+          foreach ($item['coffee_list'] as $item_inside) {
+          ?>
+            <li class="coffeeItem">
+              <div class="coffeeItemName"><?php echo $item_inside['coffee_item_name'] ?></div>
+              <div class="coffeeItemText"><?php echo $item_inside['coffee_item_text'] ?></div>
+            </li>
+          <?php
+          } ?>
+
+        </ul>
+      </div><!-- /coffeeBlock -->
+    <?php endforeach; ?>
