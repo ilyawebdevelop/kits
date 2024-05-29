@@ -1,0 +1,261 @@
+<section class="apiInfo">
+  <div class="container">
+    <div class="apiInfoList">
+
+      <!-- Локация -->
+      <?php $items = carbon_get_theme_option('map_local'); ?>
+
+      <?php foreach ($items as $item) : ?>
+
+        <div class="apiInfoLocal" data-local="<?php echo $item['map_local_title']; ?>">
+
+          <!-- Маркеры -->
+          <?php
+          foreach ($item['map_marker'] as $item_inside) {
+          ?>
+            <div class="apiInfoItem" data-title="<?php echo $item_inside['map_marker_title'] ?>" data-price="<?php echo $item_inside['map_marker_price'] ?>" data-descr="<?php echo $item_inside['map_marker_descr'] ?>" data-x="<?php echo $item_inside['map_marker_x'] ?>" data-y="<?php echo $item_inside['map_marker_y'] ?>">
+
+            </div><!-- /apiInfoItem -->
+          <?php
+          } ?>
+
+        </div>
+      <?php endforeach; ?>
+
+      <div class="apiInfoData" data-info="<?= esc_html(json_encode($items)) ?>"></div>
+    </div>
+  </div>
+</section>
+
+<section class="apiMap">
+  <div class="container">
+    <h1 class="h2 mb-3">API Карты</h1>
+    <div class="mapiW">
+      <div class="mapApi" id="mapApi_1"></div>
+      <div class="mapContent">
+        <div class="mapContentName">
+          Сокуры
+        </div>
+        <div class="mapContentBody">
+
+          <div class="mapHouseItem">
+            <img class="mapHouseImg" src="<?= get_template_directory_uri() . '/assets/img/icons/house-map.jpg' ?>" alt="image">
+            <div class="mapHouseContent">
+              <div class="mapHouseTitle">
+                Земельные участки
+                в сокурах
+              </div>
+              <div class="mapHousePrice">
+                от 800 000 ₽ за 1 сот.
+              </div>
+              <div class="mapHouseDescr">
+                Доступно: 8 земельных
+                участков
+              </div>
+            </div>
+          </div>
+
+          <button class="btn btn--yellow mapContentBtn" data-toggle="modal" data-target="#modal-price-house">
+            Получить актуальную цену
+
+          </button>
+
+        </div>
+      </div>
+      <div class="mapNav">
+        <div class="mapNavHead">
+          <span>Выберите район:</span>
+          <button class="mapNavClose active">
+            <img src="<?= get_template_directory_uri() . '/assets/img/icons/close.svg' ?>" alt="close">
+          </button>
+        </div>
+        <button class="mapNavShow btn btn--yellow">
+          Выбрать район
+        </button>
+        <div class="mapNavBody active">
+
+          <!-- Локация -->
+          <?php $items = carbon_get_theme_option('map_local'); ?>
+          <?php $number_local = 0; ?>
+          <?php foreach ($items as $item) : ?>
+            <?php
+            $number_local++;
+            if ($number_local == 1) {
+            ?>
+              <button class="mapNavBtn active" data-num="mapEl<?= $number_local; ?>"><?php echo $item['map_local_title']; ?></button>
+            <?php
+            } else {
+            ?>
+              <button class="mapNavBtn" data-num="mapEl<?= $number_local; ?>"><?php echo $item['map_local_title']; ?></button>
+            <?php
+            }
+            ?>
+
+          <?php endforeach; ?>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<script>
+  initMap();
+  let apiInfoData = jQuery('.apiInfoData').data("info");
+
+  async function initMap() {
+    // Промис `ymaps3.ready` будет зарезолвлен, когда загрузятся все компоненты основного модуля API
+    await ymaps3.ready;
+
+    const {
+      YMap,
+      YMapDefaultSchemeLayer,
+      YMapDefaultFeaturesLayer,
+      YMapMarker
+    } = ymaps3;
+
+    // Иницилиазируем карту
+    let mapiW = document.querySelector('.mapApi');
+    let count = 0;
+    apiInfoData.forEach(mapel => {
+      count++;
+      const mapW = document.createElement('div');
+      mapW.id = 'mapEl' + count;
+      mapW.classList.add('mapElement');
+      if (count == 1) {
+        mapW.classList.add('active');
+      }
+      mapiW.appendChild(mapW);
+      let loc_coord_x = mapel.map_local_coord_x;
+      let loc_coord_y = mapel.map_local_coord_y;
+      let loc_coordXY = [loc_coord_x, loc_coord_y];
+      const map = new YMap(
+        // Передаём ссылку на HTMLElement контейнера
+        document.getElementById(mapW.id),
+
+        // Передаём параметры инициализации карты
+        {
+          location: {
+            // Координаты центра карты
+            center: loc_coordXY,
+            // Уровень масштабирования
+            zoom: 9
+          }
+        }
+      );
+
+      // Добавляем слой для отображения схематической карты
+      map.addChild(new YMapDefaultSchemeLayer());
+
+      // Добавьте слой для маркеров
+      map.addChild(new YMapDefaultFeaturesLayer());
+
+      // Массив маркеров
+      let mapMarkerArray = mapel.map_marker;
+      let markerCount = 0;
+      mapMarkerArray.forEach(markerEl => {
+        // Создайте DOM-элемент для содержимого маркера.
+        // Важно это сделать до инициализации маркера!
+        // Элемент можно создавать пустым. Добавить HTML-разметку внутрь можно после инициализации маркера.
+        // Маркер       
+        markerCount++;
+        const content = document.createElement('div');
+        content.classList.add('houseItem');
+
+        content.dataset.title = markerEl.map_marker_title;
+        content.dataset.price = markerEl.map_marker_price;
+        content.dataset.descr = markerEl.map_marker_descr;
+        content.dataset.titleLocal = mapel.map_local_title;
+        var coordX = markerEl.map_marker_x;
+        var coordY = markerEl.map_marker_y;
+        var coordXY = [coordX, coordY];
+
+        // Инициализируйте маркеры
+        const marker = new YMapMarker({
+            coordinates: coordXY,
+            draggable: false
+          },
+          content
+        );
+
+        // Добавьте маркер на карту
+        map.addChild(marker);
+
+        // Добавьте произвольную HTML-разметку внутрь содержимого маркера
+        if (markerCount == 1) {
+          content.innerHTML = `<div class='markerW'><img class='houseMapIcon' src='https://brickstone.pro/wp-content/themes/brickstone/assets/img/icons/marker-black.svg' alt='house-image'><div class='houseCard active'><img class='houseCardImg' src='https://brickstone.pro/wp-content/themes/brickstone/assets/img/icons/house.png'><div class='houseCardContent'><div class='houseCardTitle'>${markerEl.map_marker_title_sm}</div><div class='houseCardPrice'>${markerEl.map_marker_price_sm}</div></div></div></div>`;
+
+        } else {
+          content.innerHTML = `<div class='markerW'><img class='houseMapIcon active' src='https://brickstone.pro/wp-content/themes/brickstone/assets/img/icons/marker-black.svg' alt='house-image'><div class='houseCard'><img class='houseCardImg' src='https://brickstone.pro/wp-content/themes/brickstone/assets/img/icons/house.png'><div class='houseCardContent'><div class='houseCardTitle'>${markerEl.map_marker_title_sm}</div><div class='houseCardPrice'>${markerEl.map_marker_price_sm}</div></div></div></div>`;
+        }
+
+        // КЛИК ПО МАРКЕРУ И ПОЯВЛЕНИЕ ЧЕРНОГО ОКОШКА
+        let houseItemAll = document.querySelectorAll('.houseItem');
+        houseItemAll.forEach(el => {
+          let houseCard = el.querySelector('.houseCard');
+          let houseMapIcon = el.querySelector('.houseMapIcon');
+          el.addEventListener('click', () => {
+            houseItemAll.forEach(elem => {
+              elem.querySelector('.houseCard').classList.remove('active');
+              elem.querySelector('.houseMapIcon').classList.add('active');
+            });
+            houseCard.classList.toggle('active');
+            houseMapIcon.classList.toggle('active');
+          });
+        });
+      });
+    });
+
+    // ПЕРЕДАЧА ИНФЫ (ЗАГОЛОВКА, ЦЕНЫ, КОЛ-ВА УЧАСТКОВ) В ОКНО СЛЕВА
+    let houseItemAll = document.querySelectorAll('.houseItem');
+    let localItemTitle = document.querySelector('.mapContentName');
+    let mapHouseTitle = document.querySelector('.mapHouseTitle');
+    let mapHousePrice = document.querySelector('.mapHousePrice');
+    let mapHouseDescr = document.querySelector('.mapHouseDescr');
+    let mapContentBtnText = document.getElementById('mapContentBtnText');
+    houseItemAll.forEach(el => {
+      el.addEventListener('click', () => {
+        mapHouseTitle.textContent = el.dataset.title;
+        mapHousePrice.textContent = el.dataset.price;
+        mapHouseDescr.textContent = el.dataset.descr;
+        mapContentBtnText.value = el.dataset.title;
+        localItemTitle.textContent = el.dataset.titleLocal;
+      });
+    });
+  }
+
+  // НАВИГАЦИЯ: КЛИКИ ПО КНОПКЕ, И СВОРАЧИВАНИЕ ОКНА СПРАВА КАРТЫ
+  let mapNavBtnAll = document.querySelectorAll('.mapNavBtn');
+  let mapNavClose = document.querySelector('.mapNavClose');
+  let mapNavBody = document.querySelector('.mapNavBody');
+  let mapNavShow = document.querySelector('.mapNavShow');
+  mapNavBtnAll.forEach(el => {
+    el.addEventListener('click', () => {
+      mapNavBtnAll.forEach(elem => {
+        elem.classList.remove('active');
+      });
+      el.classList.add('active');
+      let dataNum = el.dataset.num;
+      let mapElementArray = document.querySelectorAll('.mapElement');
+      mapElementArray.forEach(mapElem => {
+        mapElem.classList.remove('active');
+        if (mapElem.id == dataNum) {
+          mapElem.classList.add('active');
+        }
+      });
+    });
+  });
+  mapNavClose.addEventListener('click', () => {
+    mapNavBody.classList.remove('active');
+    mapNavShow.classList.add('active');
+    mapNavClose.classList.remove('active');
+  });
+  mapNavShow.addEventListener('click', () => {
+    mapNavBody.classList.add('active');
+    mapNavShow.classList.remove('active');
+    mapNavClose.classList.add('active');
+  });
+</script>

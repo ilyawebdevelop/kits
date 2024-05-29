@@ -1,1 +1,5 @@
 https://github.com/malihu/page-scroll-to-id
+
+import "./../../node_modules/page-scroll-to-id/jquery.malihu.PageScroll2id.js";
+
+npm install page-scroll-to-id

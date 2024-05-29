@@ -1,0 +1,10 @@
+  $(document).snowfall({
+    flakeCount: 300,
+    image: "https://weba.by/wp-content/themes/weba/snow/snow/1.png",
+    minSize: 3,
+    maxSize: 15,
+    minSpeed: 1,
+    maxSpeed: 2,
+    round: true,
+    shadow: false,
+  });

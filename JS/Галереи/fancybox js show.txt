@@ -1,0 +1,3 @@
+Fancybox.show([{ src: "#modalProductAdd", type: "inline" }]);
+
+https://fancyapps.com/fancybox/plugins/html/

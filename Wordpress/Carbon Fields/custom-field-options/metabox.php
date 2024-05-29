@@ -74,6 +74,7 @@ Container::make('post_meta', 'Главная страница')
       )),
   ))
   ->add_tab(__('Сертификаты'), array(
+    Field::make('separator', 'crb_style_options', 'Контакты отдела продаж'),
     Field::make('complex', 'cert_repeat', 'Сертификат')
       ->add_fields(array(
         Field::make('image', 'cert_img', 'Изображение')
@@ -162,3 +163,13 @@ Container::make('term_meta', __('Term Options', 'crb'))
   //     'post_type' => 'work',
   //   )
   // ))
+
+
+    // Field::make('association', 'related_portfolio', 'Рекомендуемые проекты')
+    //   ->set_types(array(
+    //     array(
+    //       'type'      => 'post',
+    //       'post_type' => 'post',
+    //       'category' => 3,
+    //     )
+    //   ))

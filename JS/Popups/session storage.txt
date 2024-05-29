@@ -1,0 +1,8 @@
+	jQuery(document).ready(function() {
+		if (!sessionStorage.getItem('_modal-event-showed')) {
+			setTimeout(function() {
+				$("#modal-event").modal("show");
+				sessionStorage.setItem('_modal-event-showed', 1);
+			}, 10000);
+		}
+	});

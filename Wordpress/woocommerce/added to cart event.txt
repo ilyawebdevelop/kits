@@ -1,3 +1,9 @@
+jQuery('body').on('added_to_cart', function () {
+     console.log('Item was added to cart');
+  });
+
+
+
 File:
 add-to-cart.min.js
 
@@ -33,5 +39,8 @@ add-to-cart.min.js
         },
         dataType: 'json'
       });
+
+
+
 
 

@@ -1,0 +1,8 @@
+$('.bapf_head').click(function() {
+		$(this).toggleClass('active');
+		$(this).siblings('.bapf_body').slideToggle();
+	});
+	$('.bapf_head_1').click(function() {
+		$(this).toggleClass('active');
+		$(this).siblings('.bapf_body').slideToggle();
+	});

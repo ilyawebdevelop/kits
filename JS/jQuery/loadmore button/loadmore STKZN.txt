@@ -1,0 +1,12 @@
+// products show load-more
+  $(".catalog__item").slice(0, 8).show();
+  if ($(".catalog__item:hidden").length == 0) {
+    $(".catalog__btn-more").addClass("no-content");
+  }
+  $(".catalog__btn-more").on("click", function(e) {
+    e.preventDefault();
+    $(".catalog__item:hidden").slice(0, 4).slideDown();
+    if ($(".catalog__item:hidden").length == 0) {
+      $(".catalog__btn-more").addClass("no-content");
+    }
+  });

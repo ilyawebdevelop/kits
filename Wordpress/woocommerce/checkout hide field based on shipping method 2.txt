@@ -1,0 +1,52 @@
+wc-functions-checkout.php
+
+
+add_action('woocommerce_after_checkout_form', 'hide_ship_to_section');
+
+function hide_ship_to_section($available_gateways)
+{
+
+  $chosen_methods = WC()->session->get('chosen_shipping_methods');
+  $chosen_shipping = $chosen_methods[0];
+  if (0 === strpos($chosen_shipping, 'local_pickup')) {
+?>
+
+  <?php
+  }
+  ?>
+  <script>
+    console.log('Проверка');
+
+    // Wrappers addresses
+    // #shipping_country_field +
+    // #shipping_state_change_field +
+    // #shipping_city_field +
+    // #shipping_address_1_field +
+    // #shipping_postcode_field +
+
+    // block addresses
+    // .woocommerce-shipping-fields +
+
+    // Inputs addresses
+    // #shipping_country +
+    // #shipping_state_change +
+    // #shipping_city +
+    // #shipping_address_1 +
+    // #shipping_postcode +
+
+    jQuery('form.checkout').on('change', 'input[name^="shipping_method"]', function() {
+      var val = jQuery(this).val();
+      if (val.match("^local_pickup:2")) {
+        console.log('Самовывоз');
+        jQuery('#shipping_country_field, #shipping_state_change_field, #shipping_city_field, #shipping_address_1_field, #shipping_postcode_field, .woocommerce-shipping-fields').hide(); //Прячем адреса
+        //если клиент не авторизован или у него нет адреса, нам что-то надо передать,т.к. поле адрес обязательное
+        jQuery('#shipping_city, #shipping_state_change, #shipping_address_1').attr('value', '-'); //передадим в адрес строку "самовывоз"	
+        jQuery('#shipping_country').attr('value', 'RU'); //передадим в адрес строку "самовывоз"	       
+        jQuery('#shipping_postcode').attr('value', '111'); //передадим в postcode 111      
+      } else {
+        console.log('Не самовывоз');
+        jQuery('#shipping_country_field, #shipping_state_change_field, #shipping_city_field, #shipping_address_1_field, #shipping_postcode_field, .woocommerce-shipping-fields').show(); //Показываем адреса 
+        jQuery('#shipping_city, #shipping_state_change, #shipping_address_1, #shipping_postcode').attr('value', ''); //Очищаем value Самовывоз, указанные для input в другом табе   		       
+      }
+    });
+  </script>

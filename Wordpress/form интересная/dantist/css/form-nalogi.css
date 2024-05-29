@@ -1,0 +1,186 @@
+.nalogi {
+  font-size: calc(16px + 0 * ((100vw - 375px) / 1545));
+  line-height: 1.6;
+  font-weight: 400;
+  font-family: "Gilroy", sans-serif;
+
+  margin-top: 40px;
+}
+
+.nalogi__wrapper {
+  margin-top: 40px;
+  margin-bottom: 60px;
+}
+
+.nalogi__form .title {
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.input-group {
+  row-gap: 10px;
+  column-gap: 30px;
+}
+.input-group + .input-group {
+  margin-top: 30px;
+}
+.input-group .input {
+  margin: 0;
+  width: 100%;
+  position: relative;
+}
+.input-group .input:not(:last-child) {
+  margin-right: 0;
+}
+.input-group .input:last-child {
+  margin-right: 0;
+}
+
+.input__label {
+  color: #161615;
+}
+
+.nalogi__required {
+  color: red;
+  font-size: 24px;
+}
+label .nalogi__required {
+  font-size: 18px;
+}
+
+.nalogi__input {
+  align-items: start;
+  justify-content: end;
+}
+.nalogi__input .nalogi__button {
+  width: max-content;
+  height: 60px;
+}
+
+.nalogi__form-footer {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  column-gap: 20px;
+  margin-top: 40px;
+}
+
+.nalogi__caption {
+  font-size: calc(10px + 2 * ((100vw - 375px) / 1545));
+  line-height: 1.6;
+  font-weight: 400;
+  font-family: "Gilroy", sans-serif;
+  color: #828282;
+}
+.nalogi__caption a {
+  color: #7d9c9e;
+}
+.nalogi__caption a:hover {
+  color: #828282;
+}
+
+.input__radio {
+  display: flex;
+  column-gap: 20px;
+  align-items: center;
+  height: 60px;
+  border: 1px solid #e0e0e0;
+  padding: 16px 14px 14px 16px;
+  width: 100%;
+}
+.input__radio label {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+  white-space: nowrap;
+}
+.input__radio .input__field {
+  width: max-content;
+}
+
+.input__note {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 4px;
+}
+
+.input.nalogi__input--dogovor_copy {
+  width: max-content;
+}
+.input.nalogi__input--dogovor_copy .input__radio {
+  padding-right: 60px;
+}
+
+.nalogi__input--buttons {
+  display: flex;
+  align-items: end;
+  column-gap: 20px;
+  flex-direction: row;
+  justify-content: start;
+  margin-top: 10px;
+}
+.nalogi__button--delete {
+  background-color: #fd3237;
+  display: none;
+}
+.pacient_num {
+  display: none;
+}
+
+.pacient--item .pacient_num, .pacient--item .nalogi__button {
+  display: block;
+}
+
+.nalogi__input [type="date"] {
+  width: 100%;
+  height: 60px;
+  flex-shrink: 0;
+}
+.nalogi__input [type="date"] ::before {
+  content: attr(data-placeholder);
+  width: 100%;
+}
+.nalogi__input [type="date"]:focus::before,
+.nalogi__input [type="date"]:valid::before { display: none }
+
+@media screen and (max-width: 1024px) {
+  .input-group {
+    width: 100%;
+    flex-direction: column;
+  }
+  
+  .nalogi__input {
+    flex-shrink: 0;
+  }
+
+  .input.nalogi__input--dogovor_copy {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .input__radio {
+    align-items: start;
+    height: auto;
+    row-gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .input__radio label {
+    width: max-content;
+    justify-content: start;
+  }
+  .nalogi__input [type="date"] {
+    height: 54px;
+  }
+}
+@media screen and (max-width: 575px) {
+  .input__radio {
+    flex-direction: column;
+  }
+
+  .input__radio label {
+    flex-shrink: 0;
+  }
+}

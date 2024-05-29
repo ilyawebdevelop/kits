@@ -1,0 +1,18 @@
+// products
+$(".shopList .productCard").slice(0, 9).slideDown({
+  start: function () {
+    $(this).css('display', 'grid');
+  }
+});
+$(".shopList+.productLoadMore").on("click", function (e) {
+  e.preventDefault();
+  $(".shopList .productCard:hidden").slice(0, 3).slideDown({
+    start: function () {
+      $(this).css('display', 'grid');
+    }
+  });
+  if ($(".shopList .productCard:hidden").length === 0) {
+    $(".shopList+.productLoadMore").addClass("no-content");
+    $(".shopList+.productLoadMore").hide();
+  }
+});

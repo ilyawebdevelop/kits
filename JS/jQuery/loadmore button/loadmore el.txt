@@ -9,13 +9,13 @@ $("#content_1 .retrofit-load-more").on("click", function (e) {
 });
 
 
-let allCard_1 = document.querySelectorAll('#content_1 .retrofit-card');
-let butonCardsMore_1 = document.querySelector('#content_1 .retrofit-load-more');
+let allCard = document.querySelectorAll('.tabs__panel .col-lg-6');
 
-allCard_1.forEach(el => {
+allCard.forEach(el => {
+  let buttonOfThisEl = el.closest('.tabs__panel').querySelector('.dreamCardLoadMore');
   if (getComputedStyle(el).display == 'none') {
-    butonCardsMore_1.style.display = 'block';
+    buttonOfThisEl.style.display = 'block';
   } else {
-    butonCardsMore_1.style.display = 'none';
+    buttonOfThisEl.style.display = 'none';
   }
 });

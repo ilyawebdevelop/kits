@@ -1,0 +1,4 @@
+	<button type="submit" name="add-to-cart" data-quantity="1" data-product_id="<?php echo get_the_ID(); ?>" value="<?php echo esc_attr($product->get_id()); ?>" class="ajax_add_to_cart add_to_cart_button button button--secondary button--gap button--lg fw-medium productBtn single_add_to_cart_button button alt<?php echo esc_attr(wc_wp_theme_get_element_class_name('button') ? ' ' . wc_wp_theme_get_element_class_name('button') : ''); ?>">
+			<img src="<?= get_template_directory_uri() . '/assets/img/icons/cart-white.svg' ?>" alt="cart">
+			Добавить корзину
+		</button>
