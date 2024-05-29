@@ -1,0 +1,141 @@
+https://stackoverflow.com/questions/65133343/extend-wishlist-without-plugin-to-work-with-woocommerce-products
+
+1) Add 3 functions to functions.php
+
+    //favorite posts array
+    function favorite_id_array() { 
+        if (!empty( $_COOKIE['favorite_post_ids'])) {
+            return explode(',', $_COOKIE['favorite_post_ids']);
+        }
+        else {
+            return array();
+        }
+    }
+    
+    
+    
+    //add to favorite function
+    function add_favorite() {
+        $post_id = (int)$_POST['post_id'];
+        if (!empty($post_id)) {
+            $new_post_id = array(
+                $post_id
+            );
+            $post_ids = array_merge($new_post_id, favorite_id_array());
+            $post_ids = array_diff($post_ids, array(
+                ''
+            ));
+            $post_ids = array_unique($post_ids);
+            setcookie('favorite_post_ids', implode(',', $post_ids) , time() + 3600 * 24 * 365, '/');
+            echo count($post_ids);
+        }
+        die();
+    }
+    add_action('wp_ajax_favorite', 'add_favorite');
+    add_action('wp_ajax_nopriv_favorite', 'add_favorite');
+    
+    
+    
+    //delete from favorite function
+    function delete_favorite() {
+        $post_id = (int)$_POST['post_id'];
+        if (!empty($post_id)) {
+            $favorite_id_array = favorite_id_array();
+            if (($delete_post_id = array_search($post_id, $favorite_id_array)) !== false) {
+                unset($favorite_id_array[$delete_post_id]);
+            }
+            setcookie('favorite_post_ids', implode(',', $favorite_id_array) , time() + 3600 * 24 * 30, '/');
+            echo count($favorite_id_array);
+        }
+        die();
+    }
+    add_action('wp_ajax_delfavorite', 'delete_favorite');
+    add_action('wp_ajax_nopriv_delfavorite', 'delete_favorite');
+
+2) Adding "Add to favorite"link to your template. For posts it's single.php
+
+   <?php if(in_array($post->ID, favorite_id_array())){ ?>
+   <div class="fv_<?php echo $post->ID; ?>" title="Already in favorite" ><img src="http://yoursite.com/path-to-your-icon.svg" ><a href="http://yoursite.com/favorite/">In favorite</a></div>
+   <?php } else { ?>
+   <div class="fv_<?php echo $post->ID; ?>" >
+      <div class="add-favorite" title="Add to favorite" data-post_id="<?php echo $post->ID; ?>">
+         <img src="http://yoursite.com/path-to-your-icon.svg">Add to favorite
+      </div>
+   </div>
+   <?php } ?>
+
+3) JS
+
+jQuery(function($) {
+    //adding to favorite
+    $('body').on('click', '.add-favorite', function() {
+        var post_id = $(this).data('post_id');
+        $.ajax({
+            url: "/wp-admin/admin-ajax.php",
+            type: 'POST',
+            data: {
+                'action': 'favorite',
+                'post_id': post_id,
+            },
+            success: function(data) {
+                $('.fv_' + post_id).html('<img src="http://yoursite.com/path-to-your-icon.svg" ><a href="http://yoursite.com/favorite/">In favorite</a>');
+                $('.num-favorite').html(data);
+            },
+        });
+    });
+    //deleting from favorite
+    $('body').on('click', '.delete-favorite', function() {
+        var post_id = $(this).data('post_id');
+        $.ajax({
+            url: "/wp-admin/admin-ajax.php",
+            type: 'POST',
+            data: {
+                'action': 'delfavorite',
+                'post_id': post_id,
+            },
+            success: function(data) {
+                $('.fv_' + post_id).html('Deleted');
+                $('.num-favorite').html(data);
+            },
+        });
+    });
+});
+
+4) Adding the link to your favorite, wherever you want, in header for example.
+<a href="http://yoursite.com/favorite/">Favorite <div class="num-favorite"><?php echo count(favorite_id_array()); ?></div> </a>
+
+5. Creating new page template in your theme, favorite.php, then in admin panel create a new page with slug favorite and choose that template for it.
+<?php
+/*
+Template Name: favorite
+*/
+?> 
+<?php
+   $favorite_id_array = favorite_id_array();
+   global $wp_query;
+   $save_wpq = $wp_query;
+   $args = array(
+   'paged' => get_query_var( 'paged' ) ? absint( get_query_var( 'paged' ) ) : 1,
+   'post_type'   => 'product',
+   'post__in'   => !empty($favorite_id_array) ? $favorite_id_array : array(0),
+    );
+   $wp_query = new WP_Query( $args ); 
+   ?>
+<?php if ($wp_query->have_posts()) : ?>
+<?php while ($wp_query->have_posts()) : $wp_query->the_post(); ?>
+<div class="fv_<?php echo $post->ID; ?>">
+   <div class="delete-favorite" data-post_id="<?php echo $post->ID; ?>" title="Delete from favorite">
+      <img src="http://yoursite.com/link-to-your-icon.svg" >Delete
+   </div>
+</div>
+<a href="<?php the_permalink() ?>"><?php the_title(); ?></a>
+<?php endwhile; ?>
+<?php else : ?>
+<p>No posts in your favorite</p>
+<?php endif; ?>
+<?php wp_reset_postdata();  ?> 
+ 
+your pagination code there.
+
+
+
