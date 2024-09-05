@@ -1,0 +1,14 @@
+/**
+ * Change the default country on the checkout for non-existing users only
+ */
+add_filter('default_checkout_shipping_country', 'change_default_checkout_country', 10, 1);
+
+function change_default_checkout_country($country)
+{
+	// If the user already exists, don't override country
+	if (WC()->customer->get_is_paying_customer()) {
+		return $country;
+	}
+
+	return 'RU'; // Override default to Germany (an example)
+}

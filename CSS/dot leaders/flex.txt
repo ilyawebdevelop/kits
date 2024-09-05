@@ -1,0 +1,90 @@
+   <div class="paramList pb-4 paramList--border-b">
+
+            <div class="paramItem">
+              <div class="paramItemName">Год выпуска</div>
+              <!-- <span class="paramItemSep"></span> -->
+              <div class="paramItemText">2021 г.</div>
+            </div><!-- /paramItem -->
+            <div class="paramItem">
+              <div class="paramItemName">Пробег</div>
+              <span class="paramItemSep"></span>
+              <div class="paramItemText">
+                19 000 км</div>
+            </div><!-- /paramItem -->
+            <div class="paramItem">
+              <div class="paramItemName">Кузов</div>
+              <span class="paramItemSep"></span>
+              <div class="paramItemText">GF8W</div>
+            </div><!-- /paramItem -->
+            <div class="paramItem">
+              <div class="paramItemName">Оценка</div>
+              <span class="paramItemSep"></span>
+              <div class="paramItemText">RA</div>
+            </div><!-- /paramItem -->
+            <div class="paramItem">
+              <div class="paramItemName">Объем двигателя</div>
+              <span class="paramItemSep"></span>
+              <div class="paramItemText">2500 см³</div>
+            </div><!-- /paramItem -->
+            <div class="paramItem">
+              <div class="paramItemName">Мощность</div>
+              <span class="paramItemSep"></span>
+              <div class="paramItemText">184 л.с</div>
+            </div><!-- /paramItem -->
+            <div class="paramItem">
+              <div class="paramItemName">Привод</div>
+              <span class="paramItemSep"></span>
+              <div class="paramItemText">FULLTIME4WD</div>
+            </div><!-- /paramItem -->
+            <div class="paramItem">
+              <div class="paramItemName">Трансмиссия</div>
+              <span class="paramItemSep"></span>
+              <div class="paramItemText">FAT</div>
+            </div><!-- /paramItem -->
+            <div class="paramItem">
+              <div class="paramItemName">Комплектация</div>
+              <span class="paramItemSep"></span>
+              <div class="paramItemText">24G Navi PKG 4WD</div>
+            </div><!-- /paramItem -->
+
+
+          </div>
+
+.param {
+  &List {
+    overflow-x: hidden;
+
+    &--border-b {
+      border-bottom: 1px solid #E8E8E8;
+    }
+  }
+
+  &Item {
+    font-size: 18px;
+    font-weight: 500;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+
+    &::after {
+      background-image: radial-gradient(circle, currentcolor 1px, transparent 1.5px);
+      background-position: bottom;
+      background-size: 1ex 4.5px;
+      background-repeat: space no-repeat;
+      min-width: 80px;
+      content: "";
+      flex-grow: 1;
+      height: 1em;
+      order: 2;
+    }
+
+    &Name {
+      color: var(--gray5);
+      order: 1;
+    }
+
+    &Text {
+      order: 3;
+    }
+  }
+}

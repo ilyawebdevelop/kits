@@ -1,0 +1,49 @@
+$(window).on('load scroll', function() {
+    if ($('.header__fxd').length > 0) fixHeader();
+  });
+
+  // гамбургер
+  var mobileMenuOpened = false;
+  $('.hamburger').click(function(e) {
+    e.preventDefault();
+    if (!mobileMenuOpened) {
+      openMobileMenu();
+    } else {
+      closeMobileMenu();
+    }
+  });
+
+  function openMobileMenu() {
+    $('.hamburger').addClass('is-active');
+    $('.page__body').addClass('dis-scroll');
+    $('.mob-menu').addClass('_show');
+    $('.mob-menu-overlay').fadeIn(500);
+    mobileMenuOpened = true;
+  }
+
+  function closeMobileMenu() {
+    $('.hamburger').removeClass('is-active');
+    $('.page__body').removeClass('dis-scroll');
+    $('.mob-menu').removeClass('_show');
+    $('.mob-menu-overlay').fadeOut(500);
+    $('.mob-menu').removeClass('_show');
+    $('.mob-menu-overlay').fadeOut(500);
+    mobileMenuOpened = false;
+    setTimeout(function() {
+      $('.page__body').removeClass('dis-scroll');
+    }, 500);
+  }
+
+  $('.mob-menu-show').click(function() {
+    openMobileMenu();
+  });
+
+  $('.mob-menu__close-btn, .mob-menu-overlay').click(function() {
+    closeMobileMenu();
+  });
+
+  $('[data-scroll]').click(function() {
+    if (mobileMenuOpened) {
+      closeMobileMenu();
+    }
+  });

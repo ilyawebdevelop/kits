@@ -1,10 +1,2 @@
-$some_text = <<<TXT
-Какой-то замечательный текст
-имеющий переносы строк
-
-<div>и текст внутри блочного элемента div</div>
-
-и еще, двойные переносы строк (параграфы).
-TXT;
-
+$some_text = carbon_get_the_post_meta('about_img');
 echo wpautop( $some_text );

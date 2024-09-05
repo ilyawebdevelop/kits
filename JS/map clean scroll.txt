@@ -9,16 +9,19 @@
 
 
 //отключаем зум колёсиком мышки
+let mapIframe = document.querySelector('.contactsIframe');
+let mapAction = document.querySelector('.contacts');
+
 mapAction?.addEventListener('click', () => {
-    mapIframe.classList.add('onScroll');
+  mapIframe.classList.add('onScroll');
 });
 
 
 document.addEventListener('click', e => {
-    let target = e.target;
-    let its_map = target == mapAction || mapAction.contains(target);
-    let menu_is_active = mapIframe.classList.contains('onScroll');
-    if (!its_map && menu_is_active) {
-        mapIframe?.classList.remove('onScroll');
-    }
+  let target = e.target;
+  let its_map = target == mapAction || mapAction.contains(target);
+  let menu_is_active = mapIframe.classList.contains('onScroll');
+  if (!its_map && menu_is_active) {
+      mapIframe?.classList.remove('onScroll');
+  }
 })

@@ -1,0 +1,33 @@
+https://getuikit.com/docs/parallax
+
+<!-- UIkit CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.21.11/dist/css/uikit.min.css" />
+
+<!-- UIkit JS -->
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.21.11/dist/js/uikit.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.21.11/dist/js/uikit-icons.min.js"></script>
+
+  <div class="logoGrid" uk-parallax="x: -100%">
+
+    <a class="logoSlide" href="#">
+      <img src="@img/admin/shop/logo-1.png" alt="logo">
+    </a><!-- /logoSlide -->
+    <a class="logoSlide" href="#">
+      <img src="@img/admin/shop/logo-2.png" alt="logo">
+    </a><!-- /logoSlide -->
+    <a class="logoSlide" href="#">
+      <img src="@img/admin/shop/logo-3.png" alt="logo">
+    </a><!-- /logoSlide -->
+    <a class="logoSlide" href="#">
+      <img src="@img/admin/shop/logo-4.png" alt="logo">
+    </a><!-- /logoSlide -->
+    <a class="logoSlide" href="#">
+      <img src="@img/admin/shop/logo-5.png" alt="logo">
+    </a><!-- /logoSlide -->
+    <a class="logoSlide" href="#">
+      <img src="@img/admin/shop/logo-6.png" alt="logo">
+    </a><!-- /logoSlide -->
+    <a class="logoSlide" href="#">
+      <img src="@img/admin/shop/logo-7.png" alt="logo">
+    </a><!-- /logoSlide -->
+  </div>

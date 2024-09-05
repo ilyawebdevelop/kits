@@ -1,0 +1,9 @@
+const mediaQueryMax767 = window.matchMedia('(max-width: 767px)');
+
+
+if (mediaQueryMax767.matches) {
+  $('.headerCatalogNavTitle').click(function () {
+    $(this).toggleClass('active');
+    $(this).siblings('ul').slideToggle();
+  });
+}
