@@ -33,6 +33,15 @@
        
       }
     }
+.content {
+  &--hidden {
+    position: relative;
+    overflow: hidden;
+    -webkit-line-clamp: 5;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+  }
+}
 
 
 let jsShowMore = document.querySelectorAll('.js-show-more');

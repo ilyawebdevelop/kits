@@ -1,0 +1,76 @@
+oyyo сайт пример НОВОСТИ
+<div class="dropdown news-catalog__nav-dropdown">
+    <button class="btn dropdown__btn">
+      <span>По дате публикации: ранние</span>
+      <svg class="dropdown__arrow">
+        <use xlink:href="https://oyyo.icetwb.ru/wp-content/themes/organic/assets/img/icons/icons.svg#icon-arrow"></use>
+      </svg>
+    </button>
+    <div class="dropdown__item">
+      <ul class="list dropdown__sort">
+        <!-- <li>
+          <a href="#" class="dropdown__sort-item">По высшим оценкам</a>
+        </li>
+        <li>
+          <a href="#" class="dropdown__sort-item">По низким оценкам</a>
+        </li> -->
+        <li>
+          <a href="?orderby=date" class="dropdown__sort-item">По умолчанию</a>
+        </li>
+        <li>
+          <a href="?orderby=date&amp;order=desc" class="dropdown__sort-item">По дате публикации: новые</a>
+        </li>
+        <li>
+          <a href="?orderby=date&amp;order=asc" class="dropdown__sort-item">По дате публикации: ранние</a>
+        </li>      
+<!-- 		    <li>
+          <a href="?orderby=name&order=asc" class="dropdown__sort-item">Имя: по возрастанию</a>
+        </li>
+        <li>
+          <a href="?orderby=name&order=desc" class="dropdown__sort-item">Имя: по убыванию</a>
+        </li> -->
+      </ul>
+    </div>
+  </div>
+
+
+function dropdown() {
+  const buttons = document.querySelectorAll(".dropdown__btn");
+  const dropdowns = document.querySelectorAll(".drodpown");
+  if (buttons.length) {
+    buttons.forEach((btn => {
+      btn.addEventListener("click", (e => {
+        e.stopPropagation();
+        const currentDropdown = btn.closest(".dropdown");
+        if (!currentDropdown.classList.contains("active")) {
+          currentDropdown.classList.add("active");
+          document.addEventListener("click", (() => handleClose(currentDropdown)));
+        } else {
+          handleClose(currentDropdown);
+          currentDropdown.addEventListener("click", (e => e.stopPropagation()));
+          dropdowns.forEach((d => d.classList.remove("active")));
+        }
+      }));
+    }));
+    function handleClose(currentDropdown) {
+      currentDropdown.classList.remove("active");
+      return document.removeEventListener("click", handleClose);
+    }
+  }
+}
+
+
+
+
+const queryString = window.location.search;
+const dropdownBtnName = document.querySelector('.dropdown__btn span');
+if(queryString == '?orderby=date&order=asc'){ 
+  dropdownBtnName.textContent = 'По дате публикации: ранние';
+}
+if(queryString == '?orderby=date&order=desc'){
+  dropdownBtnName.textContent = 'По дате публикации: новые';
+}
+if(queryString == '?orderby=date'){
+  dropdownBtnName.textContent = 'По умолчанию';
+}
+console.log(queryString);

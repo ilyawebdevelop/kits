@@ -1,0 +1,55 @@
+Задаем конкретно на сколько пикселей показывается
+
+
+document.addEventListener('DOMContentLoaded', () => {
+	const hero = document.querySelector('main .sect');
+	const header = document.querySelector('.menuB');
+	// const mainEl = document.querySelector('.main');
+
+	const headerFixed = () => {
+		let scrollTop = window.scrollY;
+		let heroCenter = 1000;
+
+		if (scrollTop >= heroCenter) {
+			header.classList.add('active')
+			// mainEl.style.marginTop = `${header.offsetHeight}px`;
+		} else {
+			header.classList.remove('active')
+			// mainEl.style.marginTop = `0px`;
+		}
+	};
+
+	headerFixed();
+
+	window.addEventListener('scroll', () => {
+		headerFixed();   
+	});
+});
+
+
+отсчет от первой секции
+
+document.addEventListener('DOMContentLoaded', () => {
+	const hero = document.querySelector('main .sect');
+	const header = document.querySelector('.header');
+	const mainEl = document.querySelector('.main');
+
+	const headerFixed = () => {
+		let scrollTop = window.scrollY;
+		let heroCenter = hero.offsetHeight;
+
+		if (scrollTop >= heroCenter) {
+			header.classList.add('fixed')
+			mainEl.style.marginTop = `${header.offsetHeight}px`;
+		} else {
+			header.classList.remove('fixed')
+			mainEl.style.marginTop = `0px`;
+		}
+	};
+
+	headerFixed();
+
+	window.addEventListener('scroll', () => {
+		headerFixed();   
+	});
+});

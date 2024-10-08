@@ -1,21 +1,28 @@
-.map-action iframe {
+<div class="map-action">
+  <iframe class="mapIframe" src="https://yandex.by/map-widget/v1/?ll=104.282087%2C52.288793&mode=search&ol=geo&ouri=ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgg1MzExNzkzMxIc0KDQvtGB0YHQuNGPLCDQmNGA0LrRg9GC0YHQuiIKDayP0EIViihRQg%2C%2C&z=16.18"
+  width="560" height="400" frameborder="1" allowfullscreen="true" style="position:relative;">
+  </iframe>
+</div>
+.mapIframe{
+  height: 500px;
   width: 100%;
-  height: 100%;
+}
+
+.map-action iframe {  
   pointer-events: none;
 }
-.map-iframe.onScroll {
+.mapIframe.onScroll {
   pointer-events: all;
 }
 
 
 //отключаем зум колёсиком мышки
-let mapIframe = document.querySelector('.contactsIframe');
-let mapAction = document.querySelector('.contacts');
+let mapIframe = document.querySelector('.mapIframe');
+let mapAction = document.querySelector('.map-action');
 
 mapAction?.addEventListener('click', () => {
   mapIframe.classList.add('onScroll');
 });
-
 
 document.addEventListener('click', e => {
   let target = e.target;

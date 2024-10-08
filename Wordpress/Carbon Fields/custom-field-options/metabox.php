@@ -121,7 +121,6 @@ Container::make('post_meta', 'Табы')
     Field::make("multiselect", "crb_category_list", "Рекомендуемые категории")
       ->add_options('category_options'),
   ))
-
   ->add_tab(__('Документация'), array(
     Field::make('file', 'document_link', 'Файл')
       ->set_value_type('url'),
