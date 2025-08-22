@@ -1,0 +1,33 @@
+<div class="productSliderPageW">
+  <div class="swiper productPageSlider">
+    <div class="swiper-wrapper">
+
+      <?php
+      global $product;
+      $image_personal = $product->get_image();
+      ?>
+      <?php
+      if ($product->get_gallery_image_ids()) {
+      ?>
+        <?php foreach ($product->get_gallery_image_ids() as $gallery_image_id) {
+          $image_url = wp_get_attachment_url($gallery_image_id);
+        ?>
+          <a class="swiper-slide productSlide" data-fancybox="gallery" href="<?php echo $image_url; ?>">
+            <img src="<?php echo $image_url; ?>" alt="image">
+          </a><!-- /finishedPhotoSlide -->
+        <?php
+        }
+        ?>
+      <?php
+      } elseif ($image_personal) {
+      ?>
+        <a class="swiper-slide productSlide" data-fancybox="gallery" href="<?php echo get_the_post_thumbnail_url(); ?>">
+          <img src="<?php echo get_the_post_thumbnail_url(); ?>" alt="image">
+        </a><!-- /finishedPhotoSlide -->
+      <?php
+      }
+      ?>
+
+    </div>
+  </div>
+ 

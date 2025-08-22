@@ -1,0 +1,17 @@
+const header = document.getElementById('header');
+let lastScrollTop = 0;
+
+window.addEventListener('scroll', () => {
+	const currentScrollTop = window.scrollY;
+
+	if (currentScrollTop > lastScrollTop) {
+		// Прокрутка вниз
+		header.classList.remove('active');
+		header.classList.add('header-fixed-hide');
+	} else {
+		// Прокрутка вверх
+		header.classList.add('active');
+		header.classList.remove('header-fixed-hide');
+	}
+	lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop; // Сохраняем предыдущее значение
+});

@@ -1,0 +1,9 @@
+  let inputProgramTitle = document.querySelector('.inputProgramTitle');
+  let programSlideEach = document.querySelector('.programSlide');
+  programSlideEach.forEach(el => {
+    let button = el.querySelector('.actionBtn');
+    let title = el.querySelector('.programCardTitle');
+    button.addEventListener('click', () => {
+      inputProgramTitle.value = title.textContent;
+    });
+  });

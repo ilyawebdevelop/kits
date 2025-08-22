@@ -1,0 +1,15 @@
+$(".container").click(
+  function () {$(this).toggleClass("clicked");}
+);
+
+$(".container").click(
+  function () {$(".screen").toggleClass("clicked");}
+);
+
+$(".container").click(
+  function () {$(".menuOpen").toggleClass("clicked");}
+);
+
+$(".container").click(
+  function () {$(".phone").toggleClass("clicked");}
+);

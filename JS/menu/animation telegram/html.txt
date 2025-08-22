@@ -1,0 +1,72 @@
+<link href="https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i&amp;subset=cyrillic" rel="stylesheet">
+
+<div class="screen">
+  
+  <div class="header">
+    <svg class="logo" viewBox="0 0 120 25.97">
+	  <defs>
+		  <style>
+			.\30 fbc0251-a65e-4549-b90e-b9bf273234d8{fill:#24a49c;}.a716ec8f-e259-4f86-8a05-a30cc2bfb2a1{fill:#1e7670;}.\34 1237759-2c4c-4b1e-afe7-c1e5061370b7{fill:#14544f;}.\33 ef1d40a-a17e-474f-a57e-802aa05a715f{fill:url(#d526f625-b53f-48a0-84c3-5f0b50657855);}
+		  </style>
+		  <linearGradient id="d526f625-b53f-48a0-84c3-5f0b50657855" x1="6.847" y1="20.776" x2="6.847" y2="10.86" gradientUnits="userSpaceOnUse">
+			  <stop offset="0" stop-color="#24a49c"></stop><stop offset="1" stop-color="#14544f"></stop>
+		  </linearGradient>
+	  </defs>
+	  <g>
+		  <g>
+			  <rect class="square 0fbc0251-a65e-4549-b90e-b9bf273234d8" width="9.916" height="8.971"></rect>
+			  <polygon class="square a716ec8f-e259-4f86-8a05-a30cc2bfb2a1" points="9.916 0 9.916 8.971 14.165 13.221 14.165 8.971 14.165 4.25 9.916 0"></polygon>
+			  <polygon class="square 41237759-2c4c-4b1e-afe7-c1e5061370b7" points="0 8.971 9.916 8.971 14.165 13.221 9.916 13.221 4.25 13.221 0 8.971"></polygon>
+			  <rect class="square 3ef1d40a-a17e-474f-a57e-802aa05a715f" x="1.889" y="10.86" width="9.916" height="9.916"></rect>
+			  <polygon class="square a716ec8f-e259-4f86-8a05-a30cc2bfb2a1" points="9.916 12.749 9.916 21.72 14.165 25.97 14.165 21.72 14.165 16.999 9.916 12.749"></polygon>
+			  <polygon class="square 41237759-2c4c-4b1e-afe7-c1e5061370b7" points="0 21.72 9.916 21.72 14.165 25.97 9.916 25.97 4.25 25.97 0 21.72"></polygon>
+			  <rect class="square 0fbc0251-a65e-4549-b90e-b9bf273234d8" y="12.749" width="9.916" height="8.971"></rect>
+			  <path class="a716ec8f-e259-4f86-8a05-a30cc2bfb2a1" d="M19.245,7.3h4.534c2.519,0,4.678.935,4.678,3.886,0,2.861-2.231,4.1-4.678,4.1H22.34V19H19.245Zm4.39,5.541c1.223,0,1.8-.612,1.8-1.655s-.648-1.439-1.8-1.439h-1.3v3.094Z"></path>
+			  <path class="a716ec8f-e259-4f86-8a05-a30cc2bfb2a1" d="M36.661,19l-2.015-3.922H33.459V19H30.364V7.3H34.79c2.519,0,4.678.863,4.678,3.778a3.587,3.587,0,0,1-1.889,3.382L40.115,19Zm-3.2-6.369h1.115c1.223,0,1.871-.54,1.871-1.547S35.8,9.75,34.574,9.75H33.459Z"></path>
+			  <path class="a716ec8f-e259-4f86-8a05-a30cc2bfb2a1" d="M41.2,13.1c0-3.85,2.195-6.009,5.433-6.009s5.433,2.177,5.433,6.009c0,3.85-2.195,6.117-5.433,6.117S41.2,16.946,41.2,13.1Zm7.7,0c0-2.123-.864-3.346-2.267-3.346s-2.267,1.223-2.267,3.346.863,3.454,2.267,3.454S48.9,15.219,48.9,13.1Z"></path>
+			  <path class="a716ec8f-e259-4f86-8a05-a30cc2bfb2a1" d="M54.15,7.3h3.2l1.835,4.857.648,1.907h.072l.648-1.907L62.317,7.3h3.2V19H62.641V15.543a40.392,40.392,0,0,1,.4-4.174h-.072L61.994,14.1l-1.619,3.94H59.223L57.6,14.1l-.935-2.735H56.6a40.456,40.456,0,0,1,.4,4.174V19H54.15Z"></path>
+			  <path class="a716ec8f-e259-4f86-8a05-a30cc2bfb2a1" d="M68.111,7.3h7.556V9.894H71.206v1.835H75.02V14.32H71.206v2.087h4.642V19H68.111Z"></path>
+			  <path class="a716ec8f-e259-4f86-8a05-a30cc2bfb2a1" d="M78.115,7.3h3.166l2.591,5.217,1.115,2.627h.072a42.005,42.005,0,0,1-.4-4.462V7.3h2.95V19H84.448l-2.591-5.235-1.115-2.609H80.67a43.782,43.782,0,0,1,.4,4.462V19h-2.95Z"></path>
+			  <path class="a716ec8f-e259-4f86-8a05-a30cc2bfb2a1" d="M95.747,16.515H92.472L91.9,19H88.73L92.292,7.3h3.742L99.6,19H96.322Zm-.558-2.393-.2-.81c-.288-1.115-.576-2.537-.864-3.706h-.072c-.252,1.187-.54,2.591-.827,3.706l-.2.81Z"></path>
+			  <path class="a716ec8f-e259-4f86-8a05-a30cc2bfb2a1" d="M100.713,7.3h3.454c3.562,0,6.009,1.655,6.009,5.793s-2.447,5.9-5.829,5.9h-3.634Zm3.274,9.211c1.691,0,3.022-.684,3.022-3.418s-1.331-3.31-3.022-3.31h-.18v6.729Z"></path>
+			  <path class="a716ec8f-e259-4f86-8a05-a30cc2bfb2a1" d="M112.264,7.3h7.556V9.894h-4.462v1.835h3.814V14.32h-3.814v2.087H120V19h-7.736Z"></path>
+		  </g>
+	  </g>
+    </svg>
+    
+      <div class="container">
+        <div class="menu">
+        </div>
+      </div>
+    
+  </div>
+  
+  
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni, a similique eligendi cupiditate quasi, qui totam voluptas quaerat. Obcaecati, in eveniet accusantium, at natus explicabo saepe quod quos similique sint minus accusamus hic incidunt alias, sequi perspiciatis dolore inventore suscipit facere eos, ut minima asperiores. Animi illum voluptate, hic fuga?</p>
+  
+  <img src="https://s-media-cache-ak0.pinimg.com/736x/81/06/5f/81065f1ef25e8a1e1ea0de5ec96bb3bf.jpg"/>
+  
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam molestias veritatis non facere alias qui quaerat aliquid accusantium sint cum, dolorum consectetur pariatur id praesentium repudiandae dicta soluta voluptates at.</p>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni, a similique eligendi cupiditate quasi, qui totam voluptas quaerat. Obcaecati, in eveniet accusantium, at natus explicabo saepe quod quos similique sint minus accusamus hic incidunt alias, sequi perspiciatis dolore inventore suscipit facere eos, ut minima asperiores. Animi illum voluptate, hic fuga?</p>
+  
+  <a class = "phone" href="#">+7 (812) 650-0-650</a>
+  
+  <div class="menuOpen">
+    
+    <ul>
+      <li>О комплексе</li>
+      <li>Акции</li>
+      <li>Девелопер</li>
+      <li>Дом на карте</li>
+      <li>Как купить</li>
+      <li>Новости</li>
+      <li>Контакты</li>
+      <li class="choose">Выбрать квартиру</li>
+    </ul>
+    
+    
+    
+  </div>
+    
+  
+</div>

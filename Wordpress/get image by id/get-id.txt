@@ -1,0 +1,14 @@
+ <?php echo get_the_post_thumbnail( $post->ID, 'thumbnail', array( 'class' => 'alignleft' ) ); ?>
+
+get_the_post_thumbnail( $post_id, array( 100, 100) );
+
+
+get_the_post_thumbnail( $post_id, 'thumbnail' );      // Thumbnail (Note: different to Post Thumbnail)
+get_the_post_thumbnail( $post_id, 'medium' );         // Medium resolution
+get_the_post_thumbnail( $post_id, 'large' );          // Large resolution
+get_the_post_thumbnail( $post_id, 'full' );           // Original resolution
+
+
+
+URL
+  $featured_img_url = get_the_post_thumbnail_url(get_the_ID(), 'full');

@@ -1,0 +1,16 @@
+    const checkBoxPolicyEach = document.querySelectorAll('.form__input-policy');
+
+    checkBoxPolicyEach.forEach(el => {
+        el.addEventListener('change', checkButtonStatus);
+    });    
+
+    function checkButtonStatus() {
+        checkBoxPolicyEach.forEach(el => {
+            let buttonSubmit = el.closest('.action-form').querySelector('button[type="submit"]');
+            const allChecked = el.checked;
+            buttonSubmit.disabled = !allChecked;
+        });
+        // const allChecked = checkBox1.checked;
+        // submitButton.disabled = !allChecked;
+    }
+    checkButtonStatus();

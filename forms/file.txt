@@ -1,0 +1,12 @@
+   <input type="file" hidden id="zagruz_doc" onchange="showFile(this)">
+      <label for="zagruz_doc" class="button button--black text-uppercase text--sm fw-semibold">
+        выбрать
+      </label>
+
+<script>
+  function showFile(input) {
+  let file = input.files[0];
+  let fileUploadName = document.querySelector('.fileUploadName');
+  fileUploadName.textContent = `Загружено: ${file.name}`;
+}
+</script>

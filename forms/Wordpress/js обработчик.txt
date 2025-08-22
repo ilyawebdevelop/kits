@@ -1,0 +1,17 @@
+    jQuery('.action-form').on('submit', (e) => {
+        // Отменяем станд-е поведение формы. Будет ajax
+        e.preventDefault();
+
+        let action = jQuery(e.currentTarget).attr('action');
+        let th = jQuery(e.currentTarget);
+
+        jQuery.ajax({
+            type: 'POST',
+            url: action,
+            data: th.serialize()
+        }).done(function () {
+            handleOpenModal("success");
+            console.log('Отправлено');
+            jQuery('.action-form').trigger('reset');
+        });
+    });

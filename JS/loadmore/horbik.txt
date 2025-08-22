@@ -1,0 +1,62 @@
+  			<div class="sect-catalog__swiper-box">
+					<div class="swiper _grid products">
+						<div class="swiper-wrapper">
+							<?php
+							woocommerce_product_loop_start();
+							if (wc_get_loop_prop('total')) {
+								while (have_posts()) {
+									the_post();
+									/**
+									 * Hook: woocommerce_shop_loop.
+									 */
+									do_action('woocommerce_shop_loop');
+									?>
+									<div class="swiper-slide">
+										<?php get_template_part('template-parts/_prod-card', null, array('id' => get_the_ID())) ?>
+									</div>
+									<?php
+								}
+							}
+							woocommerce_product_loop_end();
+							?>
+						</div>
+					</div>
+					<!-- <div class="s-pagination"></div> -->
+				</div>
+				<a class="btn btn--more" href="#"><span class="icon-plus"></span>Показать еще</a>
+
+
+
+
+
+
+
+// каталог
+  function btnMoreCatalogInit() {
+    var count = 8;
+    var selector = '.sect-catalog .products > .swiper-wrapper > .swiper-slide';
+    var btnMore = $('.sect-catalog .btn--more');
+    var totalCount = $(selector).length;
+    $(selector).each(function(index) {
+      $(this).hide();
+    });
+    btnMore.unbind();
+    btnMore.show();
+    btnMore.click(function(e) {
+      e.preventDefault();
+      showMore();
+    });
+    showMore();
+    function showMore() {
+      $(selector).each(function(index) {
+        if (index < count) {
+          $(this).fadeIn();
+        }
+      });
+      if (count >= totalCount) {
+        btnMore.hide();
+      }
+      count += 8;
+    }
+  }
+  btnMoreCatalogInit();

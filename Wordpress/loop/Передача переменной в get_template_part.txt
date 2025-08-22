@@ -1,0 +1,122 @@
+  <?php
+        // параметры по умолчанию
+        $my_posts = get_posts(array(
+          'numberposts' => 3,
+          // 'orderby'     => 'date',
+          // 'order'       => 'DESC',             
+          'post_type'   => 'product',
+          'tax_query' => array(
+            // array(
+            //   'taxonomy' => 'pa_etazh',
+            //   'field'    => 'slug',
+            //   'terms'    => '1_floor',
+            // ),
+          ),
+          'suppress_filters' => true, // подавление работы фильтров изменения SQL запроса
+        ));
+        $count_post = 0;
+        global $post;
+        foreach ($my_posts as $post) {
+          setup_postdata($post);
+          $count_post++;
+          $args = ['param1' => $count_post];
+          get_template_part('woocommerce/podbor-product-card', null, $args);
+        }
+        wp_reset_postdata(); // сброс
+        ?>
+
+
+ <?php
+  global $product;
+  echo $args['param1']
+  ?>
+ <div class="product">
+   <div class="swiper product__slider">
+     <div class="swiper-wrapper">
+
+       <?php $items = carbon_get_the_post_meta('product_intro_gal'); ?>
+       <?php foreach ($items as $item) : ?>
+         <div class="swiper-slide">
+           <img src="<?php echo wp_get_attachment_url($item); ?>" alt="image" class="product__slide-img" />
+         </div>
+       <?php endforeach; ?>
+      
+     </div>
+     <div class="product__slider-pagination"></div>
+   </div>
+   <a href="<?php the_permalink(); ?>" class="product__link"></a>
+   <div class="product__head">
+     <?php
+      $current_tags = get_the_terms(get_the_ID(), 'product_tag');
+      print_r($posttags);
+      if ($current_tags) {
+        foreach ($current_tags as $tag) {
+          if ($tag->name == 'Хит продаж!') {
+      ?>
+           <span class="product__tag"><?php echo $tag->name; ?></span>
+         <?php
+          }
+          ?>
+     <?php
+        }
+      }
+      ?>
+     <!-- ДОБАВЛЕНО В СРАВНЕНИЕ -->
+     <div class="product__compare-current" style="display: none;">
+       <p class="product__compare-current-content">
+         Добавлен
+         <a href="#">в сравнение</a>
+       </p>
+       <div class="product__compare-current-primary">
+         <svg class="product__compare-current-icon">
+           <use xlink:href="<?= get_template_directory_uri() . '/assets/img/icons/icons.svg#icon-check' ?>"></use>
+         </svg>
+       </div>
+     </div>
+     <!-- /ДОБАВЛЕНО В СРАВНЕНИЕ -->
+     <button class="btn-clear product__compare">
+       <div class="product__compare-btn">
+         <svg class="product__icon">
+           <use xlink:href="<?= get_template_directory_uri() . '/assets/img/icons/icons.svg#icon-chart' ?>"></use>
+         </svg>
+       </div>
+       <span>Сравнить</span>
+     </button>
+   </div>
+   <h5 class="product__title"><?php echo carbon_get_the_post_meta('product_card_title'); ?></h5>
+   <ul class="list product__list">
+     <?php
+      if (!empty($product->get_attribute('pa_ram'))) {
+      ?>
+       <li>RAM: <?php echo $product->get_attribute('pa_ram'); ?>GB</li>
+     <?php
+      }
+      ?>
+     <?php
+      if (!empty($product->get_attribute('pa_ssd'))) {
+        if ($product->get_attribute('pa_ssd') == '1000') {
+      ?>
+         <li>SSD: <?php echo '1' . 'TB' ?></li>
+       <?php
+        } else {
+        ?>
+         <li>SSD: <?php echo $product->get_attribute('pa_ssd') . 'GB' ?></li>
+       <?php
+        }
+        ?>
+     <?php
+      }
+      ?>
+   </ul>
+   <p class="product__content">
+     Самый бюджетный вариант. Средние настройки игр тянет, процессор
+     современный, хватит надолго. Если что, сможете расширить ОЗУ.
+   </p>
+   <a href="<?php echo carbon_get_the_post_meta('product_link_ozon'); ?>" target="_blank" class="product__price">
+     <span class="product__price-content">Купить <br />
+       на Озон</span>
+     <span class="product__price-primary"><?php echo $product->get_price_html(); ?> </span>
+   </a>
+   <img src="<?php echo carbon_get_the_post_meta('product_image_catalog'); ?>" alt="image" class="product__img" />
+ </div>
+

@@ -70,7 +70,48 @@ Container::make('post_meta', 'Главная страница')
     Field::make('complex', 'about_repeat_hide', 'Текст (скрыт)')
       ->add_fields(array(
         Field::make('text', 'about_text_hide', 'Абзац')
-          ->set_width(100),
+          ->set_width(100)
+          ->set_default_value('Например'),
+      )),
+  ))
+  // conditional fields
+  ->add_tab(__('Об организации'), array(
+    Field::make('complex', 'info_about_repeat', 'Об организации')
+      ->add_fields(array(
+        Field::make('text', 'info_about_title', 'Заголовок')
+          ->set_width(50),
+        Field::make('select', 'info_show_content', 'Показать контент')
+          ->set_help_text('Выберите, показать поле ввода текста или файлы для скачивания')
+          ->add_options(array(
+            'text' => 'Текст',
+            'files' => 'Файлы',
+          )),
+        Field::make('rich_text', 'info_text', 'Текст')
+          ->set_width(50)
+          ->set_conditional_logic(array(
+            'relation' => 'AND', // Optional, defaults to "AND"
+            array(
+              'field' => 'info_show_content',
+              'value' => 'text', // Optional, defaults to "". Should be an array if "IN" or "NOT IN" operators are used.
+              'compare' => '=', // Optional, defaults to "=". Available operators: =, <, >, <=, >=, IN, NOT IN
+            )
+          )),
+        Field::make('complex', 'info_item_download', 'Файлы')
+          ->add_fields(array(
+            Field::make('text', 'info_file_title', 'Имя файла')
+              ->set_width(50),
+            Field::make('file', 'info_file_href', 'Файл')
+              ->set_width(50)
+              ->set_value_type('url'),
+          ))
+          ->set_conditional_logic(array(
+            'relation' => 'AND', // Optional, defaults to "AND"
+            array(
+              'field' => 'info_show_content',
+              'value' => 'files', // Optional, defaults to "". Should be an array if "IN" or "NOT IN" operators are used.
+              'compare' => '=', // Optional, defaults to "=". Available operators: =, <, >, <=, >=, IN, NOT IN
+            )
+          )),
       )),
   ))
   ->add_tab(__('Сертификаты'), array(
@@ -147,12 +188,11 @@ Container::make('post_meta', 'Новости')
       ->set_type(array('image', 'video'))
   ));
 
-Container::make('term_meta', __('Term Options', 'crb'))
-  ->where('term_taxonomy', '=', 'product_cat') // only show our new field for categories
+Container::make('term_meta', 'Category Properties')
+  ->show_on_taxonomy('rent_cat')
   ->add_fields(array(
-    Field::make('image', 'cat_img', 'Изображение')
-      ->set_width(33)
-      ->set_value_type('url'),
+    Field::make('color', 'crb_title_color'),
+    Field::make('image', 'crb_thumb'),
   ));
 
   // Field::make('association', 'related_posts', 'Рекомендуемые работы')
@@ -172,3 +212,6 @@ Container::make('term_meta', __('Term Options', 'crb'))
     //       'category' => 3,
     //     )
     //   ))
+
+
+    // ->set_help_text( 'Pick a color' )

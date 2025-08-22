@@ -1,4 +1,6 @@
 https://www.8host.com/blog/obrezka-izobrazhenij-v-css-s-pomoshhyu-clip-path/
+https://bennettfeely.com/clippy/
+
 
 .circle {
   -webkit-clip-path: circle(50%);

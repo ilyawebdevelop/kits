@@ -1,0 +1,44 @@
+     <div data-media-show="743" data-show-items="4" class="container _min show">
+    <h2 class="title title-v-2 documentation__title">Документация</h2>
+    <ul class="list documentation__list ">
+
+      <?php $items = carbon_get_the_post_meta('doc_repeat'); ?>
+      <?php foreach ($items as $item) : ?>
+        <li class="documentation__item show-item">
+          <a href="<?php echo $item['doc_item_file']; ?>" download class="documentation__btn">
+            <span class="documentation__item-title"><?php echo $item['doc_item_name']; ?></span>
+            <span class="documentation__item-size"><?php echo $item['doc_item_size']; ?></span>
+            <img src="<?php echo $item['doc_item_icon']; ?>" alt="icon" class="documentation__item-icon" />
+          </a>
+        </li>
+      <?php endforeach; ?>
+
+    </ul>
+    <button class="btn show-btn documentation__show-btn">
+      <span>Показать еще</span>
+      <svg class="show-btn__arrow">
+        <use xlink:href='<?= get_template_directory_uri() . '/assets/img/icons/icons.svg#icon-arrow-double' ?>'></use>
+      </svg>
+    </button>
+  </div>
+
+
+
+ function show() {
+        const showParents = document.querySelectorAll(".show");
+        if (showParents.length) showParents.forEach((parent => {
+            const media = parent.dataset.mediaShow;
+            const showItems = +parent.dataset.showItems;
+            const items = parent.querySelectorAll(".show-item");
+            const btn = parent.querySelector(".show-btn");
+            let startItem = showItems;
+            if (window.matchMedia(`(max-width: ${media}px)`).matches) Array.from(items).slice(0, startItem).forEach((item => item.classList.add("active")));
+            btn.addEventListener("click", (() => {
+                Array.from(items).slice(4, startItem + showItems).forEach((item => item.classList.add("active")));
+                startItem += showItems;
+                if (startItem >= items.length) btn.remove();
+            }));
+        }));
+    }
+
+    show();

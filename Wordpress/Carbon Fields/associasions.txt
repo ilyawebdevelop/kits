@@ -1,36 +1,64 @@
-  <?php         
+<?php
+if (!empty($related = carbon_get_post_meta(get_the_ID(), 'related_products'))) {
+  $post_ids = array_column($related, 'id');
+  $my_posts = get_posts(array(
+    'numberposts' => -1,
+    'orderby' => 'rand',
+    'post_type' => 'product',
+    'include' => $post_ids,
+  ));
+  if (!empty($my_posts)) { ?>
+    <section class="sect bg--white productSliderW">
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 sectHead">
 
-          $related = carbon_get_post_meta(get_the_ID(), 'smi_main');
-          $post_ids = array_column($related, 'id'); // можете сделать print_r( $related) сначала             
-          $my_posts = get_posts(array(
-            'numberposts' => -1,
-            // 'orderby'     => 'date',
-            // 'order'       => 'DESC',             
-            'post_type'   => 'post',
-            'include' => $post_ids
-          ));
-          global $post;
+          <h2 class="h2 title title--orange text-uppercase" style="max-width: 586px;">
+            <span>Каталог товаров</span>
+          </h2>
+          <div class="navArrowW">
+            <?php get_template_part('template-parts/nav-arrow'); ?>
+          </div><!-- /navArrowW -->
 
-          foreach ($my_posts as $post) {
-            setup_postdata($post);
-          ?>
- <div class="swiper-slide smi-slide">
-              <a class="smi-slide__top" href="#">
-                <img src="<?= get_template_directory_uri() . '/assets/images/clients/image-1.png' ?>" alt="image">
-              </a>
-              <div class="smi-slide__content">
-                <a class="smi-slide__title" href="#">
-                  <?php the_title(); ?>
-                </a>
-                <div class="slide-date d-flex justify-content-between align-items-center">
-                  <span class="slide-date__day">сегодня, 12:30</span>
-                  <div class="slide-date__views">
-                    2355
-                  </div>
-                </div>
-              </div>
-            </div><!-- /clients-slide -->
-  <?php           
-          }
-          wp_reset_postdata(); // сброс
-          ?>
+        </div>
+
+        <div class="swiper productSlider">
+          <div class="swiper-wrapper">
+            <?php
+
+            global $post;
+            foreach ($my_posts as $post) {
+              setup_postdata($post);
+              global $product;
+              ?>
+              <div class="swiper-slide productSlide">
+                <?php get_template_part('woocommerce/content-product'); ?>
+              </div><!-- /productSlide -->
+              <?php
+            }
+            wp_reset_postdata(); // сброс
+            ?>
+
+          </div>
+        </div><!-- /productSlider -->
+
+      </div>
+    </section>
+    <?php
+  }
+}
+
+
+
+ИЛИ
+
+
+    <?php foreach ($items as $item) : ?>
+          <div class="swiper-slide">
+            <a class="prepod_link" href="/about/specialists/">
+              <img src="<?php echo get_the_post_thumbnail_url($item["id"]) ?>" alt="image" class="workers__slide-img">
+            </a>
+            <h5 class="workers__slide-title"><a href="/about/specialists/"><?php echo get_the_title($item["id"]); ?></a></h5>
+            <?php echo get_field('short_desc', $item["id"]); ?>
+            <p class="workers__slide-content"></p>
+          </div>
+        <?php endforeach; ?>

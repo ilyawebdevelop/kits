@@ -1,0 +1,19 @@
+$('.action-form').submit(function () {
+  var form = $(this);
+  var formData = new FormData(form[0]);
+  $.ajax({
+    url: 'mail.php',
+    type: 'POST',
+    data: formData,
+    async: false,
+    cache: false,
+    contentType: false,
+    processData: false,
+    success: function (data) {
+      location.href = '/spasibo';
+      form.trigger('reset');
+      // form.find('.form__agreement-box').removeClass('checkbox-active');
+    }
+  });
+  return false;
+});

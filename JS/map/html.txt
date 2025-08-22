@@ -1,0 +1,1 @@
+	<div class="contacts-main__map" id="map" data-center="[44.060152574595676,42.84889349999992]" data-zoom="17"></div>

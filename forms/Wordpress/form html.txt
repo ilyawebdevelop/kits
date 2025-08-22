@@ -1,0 +1,63 @@
+        <form action="<?php echo admin_url('admin-ajax.php?action=callback_mail') ?>" class="form calc__form action-form" method="post">
+          <div class="calc__type-car">
+            <h5 class="title calc__type-title">Выберите вид ТС</h5>
+            <div class="calc__type-wrapper">
+
+              <?php $items = carbon_get_the_post_meta('ts_type');
+              $id_type_ts = 0;
+              ?>
+              <?php foreach ($items as $item) : ?>
+                <?php $id_type_ts++;
+                if ($id_type_ts == 1) {
+                  $checked = 'checked';
+                } else {
+                  $checked = '';
+                }
+                ?>
+                <input type="radio" name="type-car" value="<?php echo $item['ts_type_item_lat']; ?>" id="type_ts_id_<?= $id_type_ts; ?>" class="form__radio" <?= $checked; ?>>
+                <label for="type_ts_id_<?= $id_type_ts; ?>" class="form__radio-label calc__radio-label"><?php echo $item['ts_type_item']; ?></label>
+              <?php endforeach; ?>
+
+            </div>
+          </div>
+          <div class="calc__form-main">
+            <label for="calc-name" class="form__item calc__form-item">
+              <input type="text" id="calc-name" name="imya" placeholder="Имя" class="form__input" />
+              <img src="<?= get_template_directory_uri() . '/assets/img/icon-user.svg' ?>" alt="icon" class="form__item-icon" />
+            </label>
+            <label for="calc-changes" class="form__item calc__form-item">
+              <div class="form__select">
+                <input type="text" id="calc-changes" name="izmeneniya" class="form__input-show" />
+                <div class="form__select-btn">
+                  <span class="form__select-title"><?php echo carbon_get_the_post_meta('calc_select_name'); ?></span>
+                  <svg class="form__select-arrow">
+                    <use xlink:href="<?= get_template_directory_uri() . '/assets/img/icons/icons.svg#icon-arrow' ?>"></use>
+                  </svg>
+                </div>
+                <ul class="list form__select-list">
+
+                  <?php $items = carbon_get_the_post_meta('register_changes'); ?>
+                  <?php foreach ($items as $item) : ?>
+                    <li class="form__select-item"><?php echo $item['register_changes_text']; ?></li>
+                  <?php endforeach; ?>
+
+                </ul>
+              </div>
+            </label>
+            <label for="calc-name" class="form__item calc__form-item">
+              <input type="tel" id="calc-tel" name="telephone" placeholder="+7 000-00-00" class="form__input" required>
+              <img src="<?= get_template_directory_uri() . '/assets/img/icon-phone.svg' ?>" alt="icon" class="form__item-icon" />
+            </label>
+            <button class="btn btn-main form__btn calc__form-btn" type="submit">
+              <span>Узнать стоимость</span>
+              <div class="btn-main__circle">
+                <svg class="btn-main__icon">
+                  <use xlink:href="<?= get_template_directory_uri() . '/assets/img/icons/icons.svg#icon-arrow-double' ?>"></use>
+                </svg>
+              </div>
+            </button>
+            <input type="checkbox" id="calc-policy" class="form__input-policy" required checked>
+            <label for="calc-policy" class="form__btn-policy calc__policy">Нажимая на кнопку, Вы даете согласие на
+              <a href="/politika-obrabotki-personalnyh-dannyh">обработку персональных данных</a></label>
+          </div>
+        </form>

@@ -1,2 +1,8 @@
-$some_text = carbon_get_the_post_meta('about_img');
-echo wpautop( $some_text );
+   <?php
+                $some_text = carbon_get_the_post_meta('about_img');
+                echo wpautop( $some_text );
+                ?>
+
+<?=
+apply_filters('the_content', carbon_get_the_post_meta('desc'));
+?>
