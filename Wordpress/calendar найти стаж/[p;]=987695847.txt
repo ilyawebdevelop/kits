@@ -1,0 +1,24 @@
+			if ($year = get_field('experience')) {
+						$now = new DateTime("now");
+					    $year    = date('Y-m-d H:i:s', strtotime($year));
+					    $year  = new DateTime($year);
+					    $diff = $now->diff($year);
+							// print_r($diff);
+					    if ($diff->y >= 5){
+					    	echo '<div class="s-benefit">';
+					    		echo '<div class="s-benefit-icon site-color-1 icon-award"></div>';
+					    		echo '<div class="s-benefit-right">';
+							    	echo '<div class="site-color-1 b-exp-title">Клинический стаж:</div>';
+							    	echo '<div class="site-color-2 b-exp-value">' . plural_form($diff->y, 0, array('год', 'года', 'лет')) . ' </div>';
+							    echo '</div>';
+					    	echo '</div>';
+					    } elseif($diff->y = 1) {
+								echo '<div class="s-benefit">';
+								echo '<div class="s-benefit-icon site-color-1 icon-award"></div>';
+								echo '<div class="s-benefit-right">';
+									echo '<div class="site-color-1 b-exp-title">Клинический стаж:</div>';
+									echo '<div class="site-color-2 b-exp-value">' . plural_form($diff->y, 0, array('год', 'год', 'лет')) . ' </div>';
+								echo '</div>';
+							echo '</div>';
+							}
+					}

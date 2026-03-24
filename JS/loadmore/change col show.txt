@@ -1,0 +1,116 @@
+<section class="sect portfolio">
+  <div class="container">
+
+    <div class="sectHead">
+      <h2 class="h2">
+        <?php the_title(); ?>
+      </h2>
+    </div>
+
+    <div class="d-grid grid-column-2 grid-column-md-1 catalog-wrap" data-initial-show="2" data-show-more="4">
+
+      <?php
+      // параметры по умолчанию
+      $my_posts = get_posts(array(
+        'numberposts' => -1,
+        // 'orderby'     => 'date',
+        // 'order'       => 'DESC',             
+        'post_type'   => 'cases',
+        'suppress_filters' => true, // подавление работы фильтров изменения SQL запроса
+      ));
+      global $post;
+      foreach ($my_posts as $post) {
+        setup_postdata($post);
+      ?>
+        <?php get_template_part('template-parts/portfolio-card'); ?>
+      <?php
+      }
+      wp_reset_postdata(); // сброс
+      ?>
+
+    </div>
+  </div>
+  <button class="text-more fw-semibold color--green-dark justify-content-center mt-40 mx-auto" type="button">
+    Загрузить еще
+    <img src="<?= get_template_directory_uri() . '/assets/img/icons/arrow-down.svg' ?>" alt="icon">
+  </button>
+
+  </div>
+
+</section>
+
+
+.catalog-wrap .col {
+  opacity: 0;
+  /* Изначально карточки скрыты */
+  max-height: 0;
+  /* Скрываем по высоте */
+  -webkit-transition: opacity 0.5s ease-out, max-height 0.5s ease-out, margin-bottom 0.5s ease-out;
+  -o-transition: opacity 0.5s ease-out, max-height 0.5s ease-out, margin-bottom 0.5s ease-out;
+  transition: opacity 0.5s ease-out, max-height 0.5s ease-out, margin-bottom 0.5s ease-out;
+  /* Плавное появление */
+  margin-bottom: 0;
+  /* Изначально нет отступа, чтобы не занимали место */
+}
+
+.catalog-wrap .col.visible {
+  opacity: 1;
+  /* Появляются */
+  max-height: unset;
+  /* Устанавливаем достаточную высоту (возможно, потребуется подстроить) */
+  margin-bottom: 35px;
+  /* Добавляем отступ после появления */
+}
+
+
+
+
+
+$(document).ready(function () {
+  const $catalogWrap = $('.catalog-wrap');
+  const $textMoreButton = $('.text-more');
+
+  // Получаем количество карточек для изначального показа
+  const initialCardsToShow = parseInt($catalogWrap.data('initial-show')) || 2;
+  // Получаем количество карточек для показа по кнопке "Показать еще"
+  const moreCardsToShow = parseInt($catalogWrap.data('show-more')) || 2;
+
+  let cardsVisible = 0; // Счетчик видимых карточек
+
+  const $allCols = $catalogWrap.find('.col');
+
+  // Изначально показываем первые `initialCardsToShow` карточек
+  if ($allCols.length > 0) {
+    $allCols.slice(0, initialCardsToShow).addClass('visible');
+    cardsVisible = initialCardsToShow;
+  }
+
+  // Скрываем кнопку, если карточек не больше, чем показывается изначально
+  if ($allCols.length <= initialCardsToShow) {
+    $textMoreButton.hide();
+  }
+
+  // Обработчик клика по кнопке "Показать еще"
+  $textMoreButton.on('click', function () {
+    let cardsToShowThisClick = moreCardsToShow; // Сколько показать в этот клик
+    let $hiddenCards = $catalogWrap.find('.col:not(.visible)'); // Находим скрытые карточки
+
+    if ($hiddenCards.length === 0) {
+      // Если скрытых карточек больше нет, скрываем кнопку
+      $(this).hide();
+      return;
+    }
+
+    // Показываем следующие `cardsToShowThisClick` карточек
+    $hiddenCards.slice(0, cardsToShowThisClick).each(function () {
+      $(this).addClass('visible');
+      cardsVisible++; // Увеличиваем счетчик видимых карточек
+    });
+
+    // Если после показа всех карточек, их общее количество стало равно всем карточкам,
+    // то скрываем кнопку.
+    if ($allCols.length === cardsVisible) {
+      $(this).hide();
+    }
+  });
+});

@@ -1,0 +1,23 @@
+https://htmlacademy.ru/demos/135#19
+
+Я делал на autotime 03.2026 Вангеры
+
+
+
+
+        <div class="chart chart--donut" style="background: conic-gradient(#FFC542 55%, var(--green) 0 79%, #0062FF 0);">
+
+        </div>
+
+
+.chart {
+  width: 63px;
+  height: 63px;
+  border-radius: 50%;
+
+  &--donut {
+
+    mask: radial-gradient(transparent 28px,
+        rgba(255, 255, 255, 1) 28px);
+  }
+}

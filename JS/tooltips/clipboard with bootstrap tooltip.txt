@@ -1,0 +1,19 @@
+let copyBtnArray = document.querySelectorAll('.copyBtn');
+copyBtnArray.forEach(el => {
+  var clipboard = new ClipboardJS(el);
+  clipboard.on('success', function (e) {
+    console.log('Action:', e.action);
+    console.log('Text:', e.text);
+    el.classList.add('copied');
+    e.clearSelection();
+    var tooltipEl = el;
+    var tooltip = new bootstrap.Tooltip(tooltipEl);
+    tooltip.show()
+
+    setTimeout(function () {
+      tooltip.hide();
+      tooltip.disable();
+    }, 2000);
+
+  });
+});

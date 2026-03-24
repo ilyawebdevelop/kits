@@ -15,3 +15,184 @@
             jQuery('.action-form').trigger('reset');
         });
     });
+
+
+
+
+$(document).ready(function () {
+  $("#formtab, #form1, #form2, #form3, #form4, #form5, #form6, #form7, #form8"
+  ).submit(function (e) {
+    e.preventDefault();
+    grecaptcha.ready(function () {
+      if (!$("input[name='g-recaptcha-response']").length) {
+        $("form").append('<input type="hidden" name="g-recaptcha-response">');
+      }
+      grecaptcha
+        .execute("6Lf_JGgsAAAAABxj9QtO4bp_2z25XknlSM8y1xnI", {
+          action: "submit",
+        })
+        .then(function (token) {
+          $("input[name='g-recaptcha-response']").val(token);
+          sendForm();
+        });
+    });
+    const sendForm = () => {
+      var formID = $(this).attr("id");
+      var formNm = $("#" + formID);
+
+      $.ajax({
+        type: "POST",
+        url: "/wp-content/themes/Gruzi-Vezi/mail.php",
+        data: formNm.serialize(),
+        success: function (data) {
+        $("#modalsanks").fadeIn();
+          $("#modal-el1t").fadeOut();
+          $("#modal-el1t_tel").fadeOut();
+          $("#modal-el1t_podr").fadeOut();
+        },
+        error: function (jqXHR, text, error) {
+          $(formNm).html(error);
+        },
+      });
+    };
+
+    return false;
+  });
+});
+$(document).ready(function () {
+  $("#formcalculator").submit(function (e) {
+    e.preventDefault();
+    grecaptcha.ready(function () {
+      if (!$("input[name='g-recaptcha-response']").length) {
+        $("form").append('<input type="hidden" name="g-recaptcha-response">');
+      }
+      grecaptcha
+        .execute("6Lf_JGgsAAAAABxj9QtO4bp_2z25XknlSM8y1xnI", {
+          action: "submit",
+        })
+        .then(function (token) {
+          $("input[name='g-recaptcha-response']").val(token);
+          sendForm();
+        });
+    });
+    const sendForm = () => {
+      var formID = $(this).attr("id");
+      var formNm = $("#" + formID);
+      $.ajax({
+        type: "POST",
+        url: "/wp-content/themes/Gruzi-Vezi/mailcalc.php",
+        data: formNm.serialize(),
+        success: function (data) {
+          $("#modalsanks").fadeIn();
+        },
+        error: function (jqXHR, text, error) {
+          $(formNm).html(error);
+        },
+      });
+    };
+    return false;
+  });
+});
+$(document).ready(function () {
+  $("#formrev").submit(function (e) {
+    e.preventDefault();
+    grecaptcha.ready(function () {
+      if (!$("input[name='g-recaptcha-response']").length) {
+        $("form").append('<input type="hidden" name="g-recaptcha-response">');
+      }
+      grecaptcha
+        .execute("6Lf_JGgsAAAAABxj9QtO4bp_2z25XknlSM8y1xnI", {
+          action: "submit",
+        })
+        .then(function (token) {
+          $("input[name='g-recaptcha-response']").val(token);
+          sendForm();
+        });
+    });
+    const sendForm = () => {
+      var formID = $(this).attr("id");
+      var formNm = $("#" + formID);
+      $.ajax({
+        type: "POST",
+        url: "/wp-content/themes/Gruzi-Vezi/mailrev.php",
+        data: formNm.serialize(),
+        success: function (data) {
+          $("#modal-el1t-rev").fadeOut();
+          $("#modalsanks2").fadeIn();
+        },
+        error: function (jqXHR, text, error) {
+          $(formNm).html(error);
+        },
+      });
+    };
+    return false;
+  });
+});
+
+function PopUpShow1() {
+  $("#modal-el1t").fadeIn(300);
+}
+function PopUpHide1() {
+  $("#modal-el1t").fadeOut(300);
+}
+function PopUpShowPhone() {
+  $("#modal-el1t_tel").fadeIn(300);
+}
+function PopUpHidePhone() {
+  $("#modal-el1t_tel").fadeOut(300);
+}
+function PopUpShowReviews() {
+  $("#modal-el1t-rev").fadeIn(300);
+}
+function PopUpHideReviews() {
+  $("#modal-el1t-rev").fadeOut(300);
+}
+function PopUpShow2() {
+  $("#modal-el1t_polit").fadeIn(300);
+}
+function PopUpHide2() {
+  $("#modal-el1t_polit").fadeOut(300);
+}
+function PopUpHide3() {
+  $("#modalsanks").fadeOut(300);
+}
+function PopUpHideSanks2() {
+  $("#modalsanks2").fadeOut(300);
+}
+
+jQuery(function ($) {
+  $(".phone").mask("+7(999)999-99-99");
+});
+
+$(document).ready(function () {
+  $(".menu-btn__mobile").click(function () {
+    $(this).parent().children(".menu-el1t__mobile").slideToggle();
+    return false;
+  });
+});
+
+//плавный скрол
+$(document).ready(function () {
+  $("body").on("click", ".btn-top", function (event) {
+    event.preventDefault();
+    var id = $(this).attr("href"),
+      top = $(id).offset().top;
+    $("body,html").animate({ scrollTop: top }, 1000);
+  });
+
+  //custom js
+  //contact form 7
+  document.addEventListener(
+    "wpcf7mailsent",
+    function (event) {
+      if ("0d4005f" === event.detail.contactFormId) {
+        // Замените 'your-form-id' на ID вашей формы
+        // Здесь добавьте код для открытия модального окна
+        // Например, вызовите функцию, которая открывает ваше модальное окно
+        // openModalFunction();
+        yaCounter49268647.reachGoal("Zakaz");
+      }
+    },
+    false
+  );
+});

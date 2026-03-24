@@ -1,0 +1,18 @@
+let inputs = document.querySelectorAll('input[type="tel"]');
+// let im = new Inputmask('+7 (999) 999-99-99');
+let im = new Inputmask({
+  mask: '+7 (999) 999-99-99',
+  onBeforePaste: function (pastedValue, opts) {
+    // Удаляем всё, кроме цифр
+    var processedValue = pastedValue.replace(/\D/g, "");
+
+    // Если первая цифра 7 или 8 и в строке 11 цифр, убираем первую
+    if (processedValue.length === 11 && (processedValue[0] === '7' || processedValue[0] === '8')) {
+      return processedValue.substring(1);
+    }
+
+    return pastedValue;
+  }
+});
+
+im.mask(inputs);

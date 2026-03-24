@@ -1,0 +1,260 @@
+     <div class="uk-width-3-4">
+
+        <div class="uk-switcher catalog-tabs uk-margin">
+          <div class="sliderW">
+
+            <div class="swiper productCatSlider">
+              <div class="swiper-wrapper">
+
+                <div class="swiper-slide">
+                  <a href="#" class="productCat">
+                    <img class="productCatImage" src="@img/admin/cat/image-1.png" alt="image">
+                    <div class="productCatB">
+                      <div class="productCatContent">
+                        <div class="productCatTitle">Террасная доска</div>
+                        <div class="productCatPrice">от 2390 ₽/м2</div>
+                      </div>
+                      <div class="stocksCardArrow round-btn round-btn--white">
+                        <img src="@img/icons/arrow-btn.svg" alt="icon">
+                      </div>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="swiper-slide">
+                  <a href="#" class="productCat">
+                    <img class="productCatImage" src="@img/admin/cat/image-2.png" alt="image">
+                    <div class="productCatB">
+                      <div class="productCatContent">
+                        <div class="productCatTitle">Ограждения</div>
+                        <div class="productCatPrice">от 12 190 ₽/м2</div>
+                      </div>
+                      <div class="stocksCardArrow round-btn round-btn--white">
+                        <img src="@img/icons/arrow-btn.svg" alt="icon">
+                      </div>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="swiper-slide">
+                  <a href="#" class="productCat">
+                    <img class="productCatImage" src="@img/admin/cat/image-3.png" alt="image">
+                    <div class="productCatB">
+                      <div class="productCatContent">
+                        <div class="productCatTitle">Подвесные кресла</div>
+                        <div class="productCatPrice">от 2390 ₽/м2</div>
+                      </div>
+                      <div class="stocksCardArrow round-btn round-btn--white">
+                        <img src="@img/icons/arrow-btn.svg" alt="icon">
+                      </div>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="swiper-slide">
+                  <a href="#" class="productCat">
+                    <img class="productCatImage" src="@img/admin/cat/image-1.png" alt="image">
+                    <div class="productCatB">
+                      <div class="productCatContent">
+                        <div class="productCatTitle">Террасная доска</div>
+                        <div class="productCatPrice">от 2390 ₽/м2</div>
+                      </div>
+                      <div class="stocksCardArrow round-btn round-btn--white">
+                        <img src="@img/icons/arrow-btn.svg" alt="icon">
+                      </div>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="swiper-slide">
+                  <a href="#" class="productCat">
+                    <img class="productCatImage" src="@img/admin/cat/image-2.png" alt="image">
+                    <div class="productCatB">
+                      <div class="productCatContent">
+                        <div class="productCatTitle">Ограждения</div>
+                        <div class="productCatPrice">от 12 190 ₽/м2</div>
+                      </div>
+                      <div class="stocksCardArrow round-btn round-btn--white">
+                        <img src="@img/icons/arrow-btn.svg" alt="icon">
+                      </div>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="swiper-slide">
+                  <a href="#" class="productCat">
+                    <img class="productCatImage" src="@img/admin/cat/image-3.png" alt="image">
+                    <div class="productCatB">
+                      <div class="productCatContent">
+                        <div class="productCatTitle">Подвесные кресла</div>
+                        <div class="productCatPrice">от 2390 ₽/м2</div>
+                      </div>
+                      <div class="stocksCardArrow round-btn round-btn--white">
+                        <img src="@img/icons/arrow-btn.svg" alt="icon">
+                      </div>
+                    </div>
+                  </a>
+                </div>
+
+              </div>
+              <div class="navArrowW">
+                <button class="navArrow navArrowPrev">
+                  <img src="@img/icons/slider-prev-black.svg" alt="icon">
+                </button>
+                <div class="swiper-scrollbar"></div>
+                <button class="navArrow navArrowNext">
+                  <img src="@img/icons/slider-next-black.svg" alt="icon">
+                </button>
+              </div>
+
+            </div>
+
+          </div>
+          <div class="sliderW">
+
+            <div class="swiper productCatSlider">
+              <div class="swiper-wrapper">
+
+                <div class="swiper-slide">
+                  <a href="#" class="productCat">
+                    <img class="productCatImage" src="@img/admin/cat/image-2.png" alt="image">
+                    <div class="productCatB">
+                      <div class="productCatContent">
+                        <div class="productCatTitle">Ограждения</div>
+                        <div class="productCatPrice">от 12 190 ₽/м2</div>
+                      </div>
+                      <div class="stocksCardArrow round-btn round-btn--white">
+                        <img src="@img/icons/arrow-btn.svg" alt="icon">
+                      </div>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="swiper-slide">
+                  <a href="#" class="productCat">
+                    <img class="productCatImage" src="@img/admin/cat/image-3.png" alt="image">
+                    <div class="productCatB">
+                      <div class="productCatContent">
+                        <div class="productCatTitle">Подвесные кресла</div>
+                        <div class="productCatPrice">от 2390 ₽/м2</div>
+                      </div>
+                      <div class="stocksCardArrow round-btn round-btn--white">
+                        <img src="@img/icons/arrow-btn.svg" alt="icon">
+                      </div>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="swiper-slide">
+                  <a href="#" class="productCat">
+                    <img class="productCatImage" src="@img/admin/cat/image-1.png" alt="image">
+                    <div class="productCatB">
+                      <div class="productCatContent">
+                        <div class="productCatTitle">Террасная доска</div>
+                        <div class="productCatPrice">от 2390 ₽/м2</div>
+                      </div>
+                      <div class="stocksCardArrow round-btn round-btn--white">
+                        <img src="@img/icons/arrow-btn.svg" alt="icon">
+                      </div>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="swiper-slide">
+                  <a href="#" class="productCat">
+                    <img class="productCatImage" src="@img/admin/cat/image-2.png" alt="image">
+                    <div class="productCatB">
+                      <div class="productCatContent">
+                        <div class="productCatTitle">Ограждения</div>
+                        <div class="productCatPrice">от 12 190 ₽/м2</div>
+                      </div>
+                      <div class="stocksCardArrow round-btn round-btn--white">
+                        <img src="@img/icons/arrow-btn.svg" alt="icon">
+                      </div>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="swiper-slide">
+                  <a href="#" class="productCat">
+                    <img class="productCatImage" src="@img/admin/cat/image-3.png" alt="image">
+                    <div class="productCatB">
+                      <div class="productCatContent">
+                        <div class="productCatTitle">Подвесные кресла</div>
+                        <div class="productCatPrice">от 2390 ₽/м2</div>
+                      </div>
+                      <div class="stocksCardArrow round-btn round-btn--white">
+                        <img src="@img/icons/arrow-btn.svg" alt="icon">
+                      </div>
+                    </div>
+                  </a>
+                </div>
+
+              </div>
+
+              <div class="navArrowW">
+                <button class="navArrow navArrowPrev">
+                  <img src="@img/icons/slider-prev-black.svg" alt="icon">
+                </button>
+                <div class="swiper-scrollbar"></div>
+                <button class="navArrow navArrowNext">
+                  <img src="@img/icons/slider-next-black.svg" alt="icon">
+                </button>
+              </div>
+            </div>
+
+          </div>
+          <div>Bazinga!</div>
+          <div>Bazinga!</div>
+          <div>Bazinga!</div>
+          <div>Bazinga!</div>
+        </div>
+      </div>
+
+const swiperInstances = [];
+// Инициализация слайдера productCatSlider
+document.querySelectorAll('.productCatSlider').forEach(n => {
+
+  const productCatSlider = new Swiper(n, {
+    slidesPerView: 3,
+    spaceBetween: 19,
+    speed: 600,
+    observer: true,
+    navigation: {
+      prevEl: n.closest('.sliderW').querySelector('.navArrowPrev'),
+      nextEl: n.closest('.sliderW').querySelector('.navArrowNext'),
+    },
+    scrollbar: {
+      el: n.closest('.sliderW').querySelector('.swiper-scrollbar'),
+      draggable: true,
+    },
+    breakpoints: {
+      0: {
+        slidesPerView: 1,
+      },
+      576: {
+        slidesPerView: 2,
+      },
+      1400: {
+        slidesPerView: 3,
+      },
+    },
+  });
+  swiperInstances.push(productCatSlider);
+});
+console.log(swiperInstances);
+
+UIkit.util.on('.uk-switcher', 'beforeshow', function () {
+  console.log('УРА!!!');
+
+  setTimeout(function () {
+    swiperInstances.forEach(el => {
+      el.update();
+      el.slideTo(0);
+    });
+  }, 500)
+
+
+
+  //  console.log(productCatSlider);
+});

@@ -1,0 +1,2 @@
+<a href="https://rutube.ru/play/embed/4ca5a03de6b4bec4e1427792f41fef06" data-fancybox="" data-src="https://rutube.ru/play/embed/4ca5a03de6b4bec4e1427792f41fef06" data-type="iframe" class="swiper-slide s-archive__reels-slide swiper-slide-active">
+</a>

@@ -1,0 +1,7 @@
+            <button class="quantity-btn quantity-minus" type="button" onclick="this.nextElementSibling.stepDown();">
+              <img src="@img/icons/minus.svg" alt="minus">
+            </button>
+            <input type="number" class="quantity-input" value="1" min="1">
+            <button class="quantity-btn quantity-plus" type="button" onclick="this.previousElementSibling.stepUp();">
+              <img src="@img/icons/plus.svg" alt="plus">
+            </button>

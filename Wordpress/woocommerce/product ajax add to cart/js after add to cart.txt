@@ -1,0 +1,3 @@
+jQuery('body').on('added_to_cart', function () {
+	Fancybox.show([{ src: "#modalAdded", closeButton: false }]);
+});

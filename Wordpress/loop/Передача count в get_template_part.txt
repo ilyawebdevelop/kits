@@ -1,0 +1,49 @@
+		<?php if (have_posts()) : ?>
+				<div class="page-projects__wrapper">
+					<?php
+					/* Start the Loop */
+					$count_inner = '';
+					$count = 0;
+					while (have_posts()) :
+						the_post();
+						$count++;				
+						/*
+				 * Include the Post-Type-specific template for the content.
+				 * If you want to override this in a child theme, then include a file
+				 * called content-___.php (where ___ is the Post Type name) and that will be used instead.
+				 */
+						get_template_part('template-parts/content', get_post_type(), array(
+							'count_inner' => $count
+						));
+
+					endwhile;
+					?>
+
+					<div class="village-next"
+						style="background: #282828 url('<?php echo carbon_get_post_meta(11, 'main_catalog_last_card_bg'); ?>') no-repeat center / cover;">
+						<div class="village-next__row">
+							<h3 class="village-next__title">
+								<?php echo carbon_get_post_meta(11, 'main_catalog_last_card_title'); ?>
+							</h3>
+							<img src="<?php echo carbon_get_post_meta(11, 'main_catalog_last_card_logo'); ?>" alt="Логотип строительной компании Легус" class="village-next__logo">
+						</div>
+						<p class="village-next__text">
+							<?php echo carbon_get_post_meta(11, 'main_catalog_last_card_descr'); ?>
+						</p>
+						<a href="<?php echo carbon_get_post_meta(11, 'main_catalog_last_card_link'); ?>" class="btn village-next__btn"><?php echo carbon_get_post_meta(11, 'main_catalog_last_card_btn_text'); ?></a>
+					</div>
+				</div>
+			<?php
+				the_posts_pagination();
+			else :
+
+				get_template_part('template-parts/content', 'none');
+
+			endif;
+			?>
+
+
+
+
+<div id="project<?php echo esc_html( $args['count_inner'] ); ?>" class="project">
+  </div>

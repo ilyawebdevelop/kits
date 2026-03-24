@@ -1,0 +1,45 @@
+const skipLink = document.getElementById('first-skip-link');
+// Инициализация слайдера first-auth-slider
+const firstAuthSlider = document.querySelector('.first-auth-slider');
+var mySwiperFirstAuth = new Swiper(firstAuthSlider, {
+  slidesPerView: 1,
+  speed: 800,
+  spaceBetween: 20,
+  navigation: {
+    nextEl: firstAuthSlider.querySelector('.navArrowNext'),
+  },
+  pagination: {
+    el: document.querySelector('.first-auth-slider .swiper-pagination'),
+    clickable: true,
+    type: 'bullets',
+  },
+  on: {
+    slideChange: function () {
+      updateSkipLink(this);
+    }
+  }
+});
+
+function updateSkipLink(swiperInstance) {
+  // Получаем текущий активный слайд
+  const activeSlide = swiperInstance.slides[swiperInstance.activeIndex];
+
+  // Извлекаем значение data-link из активного слайда
+  const dataLinkValue = activeSlide.getAttribute('data-link');
+
+  if (dataLinkValue) {
+    // Устанавливаем новое значение в атрибут href кнопки
+    // В данном примере, мы просто присваиваем значение. Если вы хотите 
+    // использовать это как реальную ссылку, возможно, вам нужно будет добавить префикс, 
+    // например: `#/page/${dataLinkValue}`
+
+    skipLink.href = `/${dataLinkValue}`;
+
+    console.log(`Слайд изменен. Кнопка обновлена, href: ${skipLink.href}`);
+  } else {
+    console.warn("Активный слайд не содержит атрибута 'data-link'.");
+  }
+}
+
+// Вызываем функцию один раз при загрузке, чтобы установить ссылку для первого слайда
+updateSkipLink(mySwiperFirstAuth);

@@ -1,0 +1,34 @@
+
+      <div class="mb-3 bg--white orderItem rounded-20">
+            <span class="color-orange fw-bold">#123456789</span>
+            <span>Передан на склад</span>
+            <span class="color-grey-3">14/12/2025, 13:21</span>
+            <span class="fw-bold">60 000 ₽</span>
+          </div>
+
+          <div class="mb-3 bg--white orderItem rounded-20">
+            <span class="color-orange fw-bold">#123456789</span>
+            <span>Отправлен</span>
+            <span class="color-grey-3">02/12/2025, 14:13</span>
+            <span class="fw-bold">45 125 ₽</span>
+          </div>
+
+.order {
+  &Item {
+    padding: 20px;
+    display: flex;
+
+    span {
+      display: block;
+      flex-grow: 1;
+      flex-basis: 0;
+
+      &:nth-child(4) {
+        width: 70px;
+        flex-shrink: 0;
+        text-align: end;
+        max-width: 70px;
+      }
+    }
+  }
+}

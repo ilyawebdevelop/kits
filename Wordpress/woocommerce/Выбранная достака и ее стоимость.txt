@@ -1,0 +1,17 @@
+	<?php
+		if (WC()->cart) {
+			WC()->cart->calculate_totals(); // Ensure totals are calculated
+			WC()->cart->calculate_shipping(); // Ensure shipping is calculated
+
+			$shipping_total = WC()->cart->get_shipping_total();
+			$shipping_tax = WC()->cart->get_shipping_tax(); // If tax is applied to shipping
+
+			$total_shipping_cost = $shipping_total + $shipping_tax;
+		?>
+			<div class="shipping d-flex justify-content-between gap-3 mb-4 pb-35 border-b-gray">
+				<span><?php esc_html_e('Shipping', 'woocommerce'); ?></span>
+				<span data-title="<?php esc_attr_e('Shipping', 'woocommerce'); ?>"><?php echo wc_price($total_shipping_cost); ?></span>
+			</div>
+		<?php
+		}
+		?>

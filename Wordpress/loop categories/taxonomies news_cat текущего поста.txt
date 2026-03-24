@@ -1,0 +1,38 @@
+<?php
+$today = get_the_date("j F Y");
+$terms = get_the_terms(get_the_ID(), 'news_cat');
+?>
+<div class="newsCard">
+  <div class="newsCardDate"><?= $today; ?></div>
+  <a href="<?php the_permalink(); ?>" class="newsCardTitle"><?php the_title(); ?></a>
+  <ul class="newsCardCat">
+
+    <?php
+    if ($terms && ! is_wp_error($terms)) {
+    
+      foreach ($terms as $term) {
+        // Получаем ссылку (URL) для термина
+        $term_link = get_term_link($term);
+
+        // Проверяем, что ссылка получена корректно
+        if (! is_wp_error($term_link)) {
+
+          // $term->name - название категории
+          // $term_link - ссылка на страницу архива этой категории
+
+          echo '<li>';
+          echo '<a href="' . esc_url($term_link) . '">';
+          echo esc_html($term->name);
+          echo '</a>';
+          echo '</li>';
+        }
+      }
+
+    }
+    ?>
+<!-- 
+    <li><a href="<?= $link; ?>"><?= $name; ?></a></li> -->
+
+
+  </ul>
+</div>

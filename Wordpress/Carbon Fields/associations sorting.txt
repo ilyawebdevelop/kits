@@ -1,0 +1,45 @@
+<section class="sect services pb-0">
+  <div class="container">
+
+    <div class="sectHead">
+      <div class="sectSubtitle mb-20 mb-lg-10"><?php echo carbon_get_post_meta(11, 'main_services_subtitle'); ?></div>
+      <h2 class="h2">
+        <?php echo carbon_get_post_meta(11, 'main_services_title'); ?>
+      </h2>
+    </div>
+
+    <div class="d-grid grid-column-4 grid-column-lg-2 grid-column-sm-1 gap-20 gap-md-30 gap-xl-40">
+
+      <?php
+      if (!empty($related = carbon_get_the_post_meta('main_services_related'))) {
+        foreach ($related as $related_item) {
+          if ($related_item['type'] == 'post') {
+            // получаем данные поста по его ID
+            global $post;
+            $post = get_post($related_item['id']);
+            setup_postdata($post);
+      ?>
+
+            <div class="col">
+              <a href="<?php the_permalink(); ?>" class="servicesCard">
+                <div class="servicesCardImg">
+                  <img src="<?= get_the_post_thumbnail_url(); ?>" alt="image">
+                </div>
+                <div class="servicesCardContent">
+                  <div class="servicesCardTitle">
+                    <?php the_title(); ?>
+                  </div>
+                </div>
+              </a>
+            </div>
+      <?php
+          }
+        }
+        wp_reset_postdata(); // сброс
+      }
+      ?>
+
+    </div>
+
+  </div>
+</section>

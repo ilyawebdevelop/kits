@@ -1,0 +1,39 @@
+    <div class="video-player" style="background: url('<?php echo carbon_get_the_post_meta('about_intro_video_bg'); ?>') 0 0 / cover no-repeat;">
+      <video data-src="<?php echo carbon_get_the_post_meta('about_intro_video_link'); ?>" preload="auto" class="video-player__video" id="about-video"></video>
+      <div class="video-player__btn">
+        <div class="items">
+          <div class="item"></div>
+          <div class="item"></div>
+        </div>
+        <svg>
+          <use xlink:href="<?= get_template_directory_uri() . '/assets/img/icons/icons.svg#icon-play' ?>"></use>
+        </svg>
+      </div>
+    </div>
+
+
+   function videoPlayer() {
+        const players = document.querySelectorAll(".video-player");
+        if (players.length) players.forEach(player => {
+            player.querySelector(".video-player__btn");
+            const video = player.querySelector(".video-player__video");
+            player.addEventListener("click", () => {
+                if (player.classList.contains("_playing")) {
+                    player.classList.remove("_playing");
+                    video.pause();
+                } else {
+                    if (!video.src) {
+                        const srcVideo = video.dataset.src;
+                        video.src = srcVideo;
+                    }
+                    player.classList.add("_playing");
+                    video.play();
+                }
+            });
+            video.addEventListener("ended", () => {
+                console.log("end");
+                player.classList.remove("_playing");
+            });
+        });
+    }
+videoPlayer();

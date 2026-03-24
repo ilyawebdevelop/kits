@@ -1,0 +1,7 @@
+var wpcf7ElmOrder = document.querySelector('#modalOrder .wpcf7');
+
+
+wpcf7ElmOrder.addEventListener('wpcf7mailsent', () => {
+  Fancybox.close();
+  Fancybox.show([{ src: "#modalThanks", type: "inline" }]);
+});
