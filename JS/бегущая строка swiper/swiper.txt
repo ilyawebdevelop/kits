@@ -1,0 +1,69 @@
+  <div class="swiper headerMarquee">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <div class="d-flex header-marquee-item gap-12">
+            <div class="header-marquee-item-cat">
+              ЭКОНОМИКА
+            </div>
+            <div class="header-marquee-item-text">
+              Внимание: изменения в графике работы общественного транспорта
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="d-flex header-marquee-item gap-12">
+            <div class="header-marquee-item-cat">
+              БЕЗОПАСНОСТЬ
+            </div>
+            <div class="header-marquee-item-text">
+              Внимание: изменения в графике работы общественного транспорта
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="d-flex header-marquee-item gap-12">
+            <div class="header-marquee-item-cat">
+              ЭКОНОМИКА
+            </div>
+            <div class="header-marquee-item-text">
+              Внимание: изменения в графике работы общественного транспорта
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="d-flex header-marquee-item gap-12">
+            <div class="header-marquee-item-cat">
+              БЕЗОПАСНОСТЬ
+            </div>
+            <div class="header-marquee-item-text">
+              Внимание: изменения в графике работы общественного транспорта
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+.headerMarquee {
+  .swiper-wrapper {
+    -webkit-transition-timing-function: linear;
+    -o-transition-timing-function: linear;
+    transition-timing-function: linear;
+  }
+  .swiper-slide {
+    width: fit-content;
+  }
+}
+
+new Swiper($('.headerMarquee')[0], {
+  slidesPerView: 'auto',
+  spaceBetween: 45,
+  speed: 15000,
+  watchOverflow: true,
+  loop: true,
+  autoplay: {
+    delay: 0,
+  },
+  allowTouchMove: false,
+  watchSlidesProgress: true,
+  a11y: false,
+});

@@ -1,0 +1,17 @@
+ .swiper-wrapper {
+    counter-reset: step-counter;
+
+    @media(min-width: 768px) {
+      display: grid;
+      grid-template-columns: repeat(15, 1fr);
+      column-gap: 24px;
+    }
+  }
+
+.stepsCard {
+    &::before {
+      counter-increment: step-counter;
+      /* Увеличиваем счетчик для каждого stepsCard */
+      content: counter(step-counter);
+    }
+}

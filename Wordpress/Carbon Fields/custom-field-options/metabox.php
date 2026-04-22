@@ -13,6 +13,7 @@ Container::make('post_meta', 'Главная страница')
       ->set_width(50)
       ->set_value_type('url'),
     Field::make('complex', 'intro_repeat', 'Слайдер')
+      ->set_collapsed(true)
       ->add_fields(array(
         Field::make('textarea', 'intro-item_title', 'Заголовок')
           ->set_width(33),
