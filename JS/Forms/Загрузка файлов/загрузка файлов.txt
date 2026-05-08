@@ -1,0 +1,28 @@
+ <div class="fileWrap mb-20 mb-lg-16">
+        <input class="fileInput" type="file" id="newsFile" hidden>
+        <label class="d-flex gap-2 align-items-center hover-opacity flex-wrap" for="newsFile">
+          <img src="@img/icons/file.svg" alt="icon">
+          <span class="color-brand-primary fileOutput">Прикрепить фото или файл</span>
+          <span class="color-gray-600">(max. 200Mb)</span>
+        </label>
+      </div>
+
+// Находим все обертки блоков
+const fileWraps = document.querySelectorAll('.fileWrap');
+
+fileWraps.forEach(wrap => {
+    // Ищем элементы только внутри текущего блока
+    const input = wrap.querySelector('.fileInput');
+    const output = wrap.querySelector('.fileOutput');
+    const defaultText = "Прикрепить фото или файл";
+
+    input.addEventListener('change', function() {
+        if (this.files && this.files.length > 0) {
+            // Берем имя первого выбранного файла
+            output.textContent = this.files[0].name;
+        } else {
+            // Возвращаем текст по умолчанию, если файл не выбран
+            output.textContent = defaultText;
+        }
+    });
+});

@@ -1,0 +1,81 @@
+<section class="sect pageSect">
+  <div class="container">
+    <h1 class="h1 mb-0 mb-lg-3 pb-0 pb-lg-1">
+      Заголовок рубрики
+    </h1>
+
+    <div class="row pt-20">
+      <div class="col-lg-8">
+        <div class="d-flex gap-4 justify-content-between mb-2 position-relative">
+
+          <button class="button button-transparent d-flex d-lg-none gap-2 filterBtn" type="button">
+            <img src="@img/icons/filter.svg" alt="icon">
+          </button>
+          <div class="filter-action">
+            <div class="d-flex d-lg-none gap-3 justify-content-between mb-4">
+              <div class="fz-20 fw-semibold">
+                Фильтры
+              </div>
+              <button class="filterBlockClose" type="button">
+                <img src="@img/icons/close.svg" alt="icon">
+              </button>
+            </div>
+            <div class="d-grid filterSelectGrid align-items-center gap-2 mb-3 mb-lg-0">
+              <div class="selectW">
+                <select class="formSelect select-field" name="rubrika_sort_okrug" id="rubrika_sort_okrug"
+                  style="width: 240px;">
+                  <option value="0">Округ</option>
+                  <option value="1">Владимирский</option>
+                  <option value="2">Астраханский</option>
+                  <option value="3">Иркутский</option>
+                </select>
+              </div>
+              <div class="selectW">
+                <select class="formSelect select-field" name="rubrika_sort_author" id="rubrika_sort_author"
+                  style="width: 240px;">
+                  <option value="0">Автор</option>
+                  <option value="1">Владимир Владимирович</option>
+                  <option value="2">Игорь Вознесенский</option>
+                  <option value="3">Ефстафий Иннокентьевич</option>
+                </select>
+              </div>
+            </div>
+            <button class="button button--blue d-flex d-lg-none mb-2 w-100">
+              Применить
+            </button>
+            <button class="button button-transparent-gray-400 d-flex d-lg-none mb-2 w-100">
+              Сбросить все
+            </button>
+          </div>
+
+          @@include('../sort-block.html',{})
+
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-8 ">
+        <div class="posts">
+          @@include('../news/card-1-row.html',{})
+          @@include('../news/card-2-row.html',{})
+          @@include('../news/card-1-row.html',{})
+          @@include('../news/card-1-row.html',{})
+          @@include('../news/card-blue-empty.html',{})
+          @@include('../news/card-1-row.html',{})
+          @@include('../news/card-2-row.html',{})
+
+        </div>
+        <div id="spinner1" class="spinner">Загрузка...</div>
+        <div class="pagination">
+          <a href="page-2.html" class="next">Next</a>
+      
+        </div>
+
+      </div>
+
+
+      @@include('../news/sidebar.html',{})
+    </div>
+
+  </div>
+</section>

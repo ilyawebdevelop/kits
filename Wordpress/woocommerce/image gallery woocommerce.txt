@@ -31,3 +31,80 @@
     </div>
   </div>
  
+
+
+  if (empty(carbon_get_the_post_meta('product_side_gallery'))) {
+      ?>
+        <div class="productMainSliderW">
+
+          <div class="swiper productMainSlider">
+            <div class="swiper-wrapper">
+
+              <?php
+              global $product;
+              $image_personal = $product->get_image();
+              if ($product->get_gallery_image_ids()) {
+                foreach ($product->get_gallery_image_ids() as $gallery_image_id) {
+                  $image_url = wp_get_attachment_url($gallery_image_id);
+              ?>
+                  <div class="swiper-slide">
+                    <img src="<?php echo $image_url; ?>" alt="image">
+                  </div>
+                <?php
+                }
+              } elseif ($image_personal) {
+                ?>
+                <div class="swiper-slide">
+                  <img src="<?php echo get_the_post_thumbnail_url(); ?>" alt="image">
+                </div>
+              <?php
+              }
+              ?>
+
+            </div>
+          </div>
+
+          <div class="swiper productMainThumbSlider">
+            <div class="swiper-wrapper">
+
+              <?php
+              global $product;
+              $image_personal = $product->get_image();
+              if ($product->get_gallery_image_ids()) {
+                foreach ($product->get_gallery_image_ids() as $gallery_image_id) {
+                  $image_url = wp_get_attachment_url($gallery_image_id);
+              ?>
+                  <div class="swiper-slide">
+                    <img src="<?php echo $image_url; ?>" alt="image">
+                  </div>
+                <?php
+                }
+              } elseif ($image_personal) {
+                ?>
+                <div class="swiper-slide">
+                  <img src="<?php echo get_the_post_thumbnail_url(); ?>" alt="image">
+                </div>
+              <?php
+              }
+              ?>
+
+            </div>
+            <button class="navArrow navArrow--gray navArrowPrev rounded-10">
+              <svg style="width: 6px; height: 12px;">
+                <use xlink:href="<?= get_template_directory_uri() . '/assets/img/icons/icons.svg#slider-prev' ?>"></use>
+              </svg>
+            </button>
+            <button class="navArrow navArrow--gray navArrowNext rounded-10">
+              <svg style="width: 6px; height: 12px;">
+                <use xlink:href="<?= get_template_directory_uri() . '/assets/img/icons/icons.svg#slider-next' ?>"></use>
+              </svg>
+            </button>
+          </div>
+
+        </div>
+      <?php
+      }
+      ?>
+
+
+
