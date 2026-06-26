@@ -1,6 +1,6 @@
    <?php
-                $some_text = carbon_get_the_post_meta('about_text');
-                echo wpautop( $some_text );
+                $text = carbon_get_the_post_meta('about_text');
+                echo wpautop( $text );
                 ?>
 
 <?=
